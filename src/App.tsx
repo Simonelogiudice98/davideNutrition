@@ -1,15 +1,8 @@
-
-import './App.scss'
-import Dashboard from './pages/dashboard/dasboard'
-
+import "./App.scss";
+import Dashboard from "./pages/dashboard/dasboard";
 
 function App() {
-
-  return (
-    <>
-      <Dashboard />
-    </>
-  )
+  return <Dashboard />;
 }
 
-export default App
+export default App;
