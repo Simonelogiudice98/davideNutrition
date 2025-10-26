@@ -1,10 +1,19 @@
 
 
-/* reset minimo + dark */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
 
 :root { color-scheme: dark; }   
+
+:root{
+  --bg:#000;
+  --text:#e6e6e6;
+  --muted:#a6a6a6;
+  --card:#111;
+  --border:#1f1f1f;
+  --accent:#FFD700;
+}
+
 
 body {
   margin: 0;
