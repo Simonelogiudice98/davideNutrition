@@ -6,6 +6,7 @@ import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
+import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 
 type Feature = { title: string; subtitle: string; Icon: React.ElementType };
 
@@ -52,6 +53,20 @@ const Home: React.FC = () => {
       </div>
       <div style={{ marginTop: "1rem" }}>
         <WhatYouGetSection />
+      </div>
+      <div style={{ marginTop: "1rem" }}>
+        <MeetOurExperts
+          fullName="Davide Maltagliati"
+          role="Biologo nutrizionista"
+          bioShort="Biologo nutrizionista, specializzato in educazione alimentare e ricomposizione corporea."
+          studies="Laurea magistrale in Scienze della Nutrizione — Londra"
+          registerId="AA_12345"
+          photoUrl="/images/davide.jpg"
+          ctaPrimaryText="Prenota una visita"
+          ctaSecondaryText="Scrivimi su WhatsApp"
+          onPrimary={() => console.log("prenota")}
+          onSecondary={() => console.log("whatsapp")}
+        />
       </div>
     </div>
   );
