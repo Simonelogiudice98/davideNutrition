@@ -1,0 +1,75 @@
+:root{
+  --bg:#000; --text:#e6e6e6; --muted:#a6a6a6;
+  --card:#111; --border:#1f1f1f; --accent:#FFD700;
+}
+
+.floatingContacts{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999; 
+}
+
+.floatingContacts__btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+
+  box-shadow:
+    0 0 0 transparent,
+    0 1px 0 rgba(255,215,0,.08) inset;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease, background .2s ease;
+
+  color: var(--text);
+
+  &:hover{
+    border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible{
+    outline: 2px solid rgba(255,215,0,.6);
+    outline-offset: 2px;
+  }
+}
+
+.floatingContacts__icon{
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: rgba(255,215,0,.08);
+  border: 1px solid rgba(255,215,0,.25);
+  color: var(--accent);
+
+  & > svg{ font-size: 20px; }
+}
+
+.floatingContacts__label{
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.floatingContacts__btn--wa:hover{ background: #121212; }
+.floatingContacts__btn--mail:hover{ background: #121212; }
+
+@media (max-width: 640px){
+  .floatingContacts{ right: 12px; bottom: 12px; gap: 8px; }
+  .floatingContacts__btn{ padding: 9px 10px; border-radius: 10px; }
+  .floatingContacts__icon{ width: 30px; height: 30px; border-radius: 8px; }
+  .floatingContacts__label{ font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .floatingContacts__btn{ transition: none; }
+}

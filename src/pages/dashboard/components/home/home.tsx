@@ -8,6 +8,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
 import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 import FaqSection from "../faq/faqSection";
+import FloatingContacts from "../floatingContacts/FloatingContacts";
 
 type Feature = { title: string; subtitle: string; Icon: React.ElementType };
 
@@ -37,6 +38,11 @@ const FEATURES: Feature[] = [
 const Home: React.FC = () => {
   return (
     <div className="home">
+      <FloatingContacts
+        whatsapp="+39333111222"
+        email="info@davidenutrition.it"
+        message="Ciao Davide! Vorrei informazioni sulle consulenze."
+      />
       <div className="home__panel">
         <h1 className="home__title">Get in shape with smart nutrition</h1>
 
