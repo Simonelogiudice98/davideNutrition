@@ -9,6 +9,7 @@ import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
 import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 import FaqSection from "../faq/faqSection";
 import FloatingContacts from "../floatingContacts/FloatingContacts";
+import TestimonialsSection from "../testimonial/testimonialSection";
 
 type Feature = { title: string; subtitle: string; Icon: React.ElementType };
 
@@ -74,6 +75,9 @@ const Home: React.FC = () => {
           onPrimary={() => console.log("prenota")}
           onSecondary={() => console.log("whatsapp")}
         />
+      </div>
+      <div style={{ marginTop: "1rem" }}>
+        <TestimonialsSection />
       </div>
       <div style={{ marginTop: "1rem" }}>
         <FaqSection />
