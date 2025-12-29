@@ -1,5 +1,5 @@
 import React from "react";
-import "./floatingContacts.scss";
+import "./FloatingContacts.scss";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
