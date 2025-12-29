@@ -1,5 +1,5 @@
 import React from "react";
-import "./MeetOurExperts.scss";
+import "./meetOurExperts.scss";
 
 export type MeetOurExpertProps = {
   title?: string;
