@@ -8,8 +8,8 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
 import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 import FaqSection from "../faq/faqSection";
-import FloatingContacts from "../floatingContacts/FloatingContacts";
 import TestimonialsSection from "../testimonial/testimonialSection";
+import FloatingContacts from "../floatingContacts/FloatingContacts";
 
 type Feature = { title: string; subtitle: string; Icon: React.ElementType };
 
