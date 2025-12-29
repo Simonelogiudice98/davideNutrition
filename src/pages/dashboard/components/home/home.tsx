@@ -1,6 +1,5 @@
 import React from "react";
 import "./home.scss";
-
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
