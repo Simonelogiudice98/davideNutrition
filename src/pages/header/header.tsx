@@ -16,6 +16,7 @@ import ReactCountryFlag from "react-country-flag";
 
 const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -31,7 +32,7 @@ const Header: React.FC = () => {
         <AppBar
           position="sticky"
           sx={{
-            bgcolor: `#000000`,
+            background: `radial-gradient(900px 260px at 15% 0%, rgba(255, 215, 0, 0.12), transparent 55%), #0B0B0B`,
             color: "#eaeaea",
             borderBottom: "1px solid rgba(255,255,255,0.06)",
             padding: "1rem",
