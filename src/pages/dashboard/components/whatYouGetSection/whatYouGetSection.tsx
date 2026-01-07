@@ -1,126 +1,232 @@
 import React from "react";
-import "./whatYouGetSection.scss";
+import {
+  alpha,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+
 
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import TimerIcon from "@mui/icons-material/Timer";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 
+type Benefit = {
+  title: string;
+  text: string;
+  Icon: React.ElementType;
+};
+
+const BENEFITS: Benefit[] = [
+  {
+    title: "Personalised meal plan",
+    text: "Built around your goals, preferences and routine (work, training, family).",
+    Icon: RestaurantMenuIcon,
+  },
+  {
+    title: "Smart grocery list",
+    text: "A ready-to-use weekly list with quick swaps and budget-friendly options.",
+    Icon: ShoppingCartIcon,
+  },
+  {
+    title: "Fast recipes",
+    text: "15–30 min meals with vegetarian and gluten-free alternatives.",
+    Icon: TimerIcon,
+  },
+  {
+    title: "Real progress tracking",
+    text: "Check-ins and adjustments—no “see you in 6 months”.",
+    Icon: QueryStatsIcon,
+  },
+];
+
+type Step = { n: number; title: string; text: string; accent?: boolean };
+
+const STEPS: Step[] = [
+  {
+    n: 1,
+    title: "Initial assessment",
+    text: "We review lifestyle, goals, food preferences and any clinical needs.",
+  },
+  {
+    n: 2,
+    title: "Your nutrition plan",
+    text: "A flexible plan plus practical guidelines: what to eat, when, and how much.",
+  },
+  {
+    n: 3,
+    title: "Follow-ups & tweaks",
+    text: "We track progress and adjust—no rigid “one-size-fits-all” approach.",
+  },
+  {
+    n: 4,
+    title: "Ongoing support",
+    text: "Quick answers to real-life questions so you stay consistent without stress.",
+    accent: true,
+  },
+];
+
 const WhatYouGetSection: React.FC = () => {
   return (
-    <section className="wyg">
-      <div className="wyg__inner">
-        <div className="wyg__left">
-          <p className="wyg__eyebrow">What will you get</p>
-          <h2 className="wyg__title">
-            Un percorso chiaro, personalizzato
-            <br />
-            e sostenibile nel tempo
-          </h2>
+    <Box component="section" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto", border:`1px solid ${alpha("#fff", 0.06)}`, borderRadius: "12px", boxShadow:"2px 4px 4px rgba(245, 196, 0)", p:4 }}>
+        {/* Header */}
+        <Stack spacing={1} alignItems="center" textAlign="center">
+          <Chip
+            label="What you get"
+            sx={{
+              bgcolor: "transparent",
+              border: "1px solid",
+              borderColor: "divider",
+              color: "primary.main",
+              fontWeight: 900,
+            }}
+          />
+          <Typography variant="h3" sx={{ fontWeight: 900 }}>
+            A clear plan you can actually stick to
+          </Typography>
+          <Typography color="text.secondary" sx={{ maxWidth: 760 }}>
+            Not “just a diet”. You’ll get a practical method to improve habits,
+            keep your social life, and make progress sustainably.
+          </Typography>
+        </Stack>
 
-          <p className="wyg__subtitle">
-            Non solo “una dieta”. Ricevi un metodo concreto per cambiare
-            abitudini alimentari senza rinunciare alla vita sociale.
-          </p>
+        {/* Content layout */}
+        <Card variant="plain" sx={{ pt: 3 }}>
+          <Grid container spacing={3} alignItems="stretch">
+            {/* LEFT: steps */}
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Card variant="plain" sx={{ height: "100%" }}>
+                <Stack spacing={2}>
+                  <Card variant="plain">
+                    <CardContent sx={{ p: { xs: 2, sm: 2.25 } }}>
+                      <Stack spacing={1.5}>
+                        {STEPS.map((s, idx) => (
+                          <React.Fragment key={s.n}>
+                            <Stack direction="row" spacing={2} alignItems="flex-start">
+                              <Box
+                                sx={{
+                                  width: 30,
+                                  height: 30,
+                                  borderRadius: 999,
+                                  display: "grid",
+                                  placeItems: "center",
+                                  fontWeight: 900,
+                                  border: "1px solid",
+                                  borderColor: s.accent ? "primary.main" : "divider",
+                                  color: s.accent ? "primary.main" : "text.primary",
+                                  bgcolor: s.accent ? "rgba(245,196,0,.08)" : "transparent",
+                                  flex: "0 0 auto",
+                                  mt: "2px",
+                                }}
+                              >
+                                {s.n}
+                              </Box>
 
-          <ol className="wyg__steps">
-            <li className="wyg__step">
-              <span className="wyg__stepNum">1</span>
-              <div>
-                <div className="wyg__stepTitle">Valutazione iniziale</div>
-                <div className="wyg__stepText">
-                  Analisi stile di vita, obiettivi, gusti e eventuali esigenze
-                  cliniche.
-                </div>
-              </div>
-            </li>
+                              <Box sx={{ flex: 1, minWidth: 0 }}>
+                                <Typography sx={{ fontWeight: 900 }}>
+                                  {s.title}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                  {s.text}
+                                </Typography>
+                              </Box>
+                            </Stack>
 
-            <li className="wyg__step">
-              <span className="wyg__stepNum">2</span>
-              <div>
-                <div className="wyg__stepTitle">Piano nutrizionale</div>
-                <div className="wyg__stepText">
-                  Menù personalizzato + linee guida pratiche (cosa mangiare,
-                  quando e quanto).
-                </div>
-              </div>
-            </li>
+                            {idx !== STEPS.length - 1 && (
+                              <Divider sx={{ borderColor: "divider", ml: 5.5 }} />
+                            )}
+                          </React.Fragment>
+                        ))}
+                      </Stack>
+                    </CardContent>
+                  </Card>
 
-            <li className="wyg__step">
-              <span className="wyg__stepNum">3</span>
-              <div>
-                <div className="wyg__stepTitle">Follow-up</div>
-                <div className="wyg__stepText">
-                  Controllo dei progressi e aggiustamenti periodici: niente
-                  piani rigidi “una volta per tutte”.
-                </div>
-              </div>
-            </li>
+                  <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={1.25}
+                    alignItems={{ sm: "center" }}
+                    justifyContent="space-between"
+                  >
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      onClick={() =>
+                        document.getElementById("meet-expert")?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        })
+                      }
+                      sx={{ flexShrink: 0 }}
+                    >
+                      Book your first visit
+                    </Button>
 
-            <li className="wyg__step">
-              <span className="wyg__stepNum wyg__stepNum--accent">4</span>
-              <div>
-                <div className="wyg__stepTitle">Supporto continuo</div>
-                <div className="wyg__stepText">
-                  Dubbi pratici (“posso mangiare X stasera?”) → risposta, non
-                  ansia.
-                </div>
-              </div>
-            </li>
-          </ol>
+                    <Typography variant="caption" color="text.secondary">
+                      Usually replies within 24 hours • Online & in-person
+                    </Typography>
+                  </Stack>
+                </Stack>
+              </Card>
+            </Grid>
 
-          <button className="wyg__cta">
-            Prenota la prima visita
-          </button>
-        </div>
+            {/* RIGHT: benefits */}
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Grid container spacing={2}>
+                {BENEFITS.map(({ title, text, Icon }) => (
+                  <Grid key={title} size={{ xs: 12, sm: 6 }}>
+                    <Card
+                      variant="softBorder"
+                      sx={{
+                        height: "100%",
+                        transition: "transform .18s ease, border-color .18s ease",
+                        "&:hover": {
+                          transform: "translateY(-3px)",
+                          borderColor: "primary.main",
+                        },
+                      }}
+                    >
+                      <CardContent sx={{ p: { xs: 2, sm: 2.25 } }}>
+                        <Stack spacing={1.25}>
+                          <Box
+                            sx={{
+                              width: 48,
+                              height: 48,
+                              display: "grid",
+                              placeItems: "center",
+                              borderRadius: 3,
+                              border: "1px solid",
+                              borderColor: "divider",
+                              bgcolor: "rgba(245,196,0,.06)",
+                            }}
+                          >
+                            <Icon sx={{ fontSize: 24, color: "primary.main" }} />
+                          </Box>
 
-        {/* RIGHT SIDE: benefit cards */}
-        <div className="wyg__right">
-          <div className="wygCard">
-            <div className="wygCard__icon">
-              <RestaurantMenuIcon fontSize="inherit" />
-            </div>
-            <div className="wygCard__title">Piano nutrizionale</div>
-            <div className="wygCard__text">
-              Personalizzato su obiettivi, gusti e routine (lavoro, palestra,
-              famiglia).
-            </div>
-          </div>
-
-          <div className="wygCard">
-            <div className="wygCard__icon">
-              <ShoppingCartIcon fontSize="inherit" />
-            </div>
-            <div className="wygCard__title">Lista della spesa</div>
-            <div className="wygCard__text">
-              Spesa settimanale già pronta + alternative economiche/veloci.
-            </div>
-          </div>
-
-          <div className="wygCard">
-            <div className="wygCard__icon">
-              <TimerIcon fontSize="inherit" />
-            </div>
-            <div className="wygCard__title">Ricette rapide</div>
-            <div className="wygCard__text">
-              Piatti pronti in 15–30 minuti, varianti vegetariane e gluten
-              free.
-            </div>
-          </div>
-
-          <div className="wygCard">
-            <div className="wygCard__icon">
-              <QueryStatsIcon fontSize="inherit" />
-            </div>
-            <div className="wygCard__title">Monitoraggio reale</div>
-            <div className="wygCard__text">
-              Check-in e aggiustamenti: niente “fai da solo e risentiamoci tra
-              6 mesi”.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                          <Typography sx={{ fontWeight: 900 }}>{title}</Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {text}
+                          </Typography>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Card>
+      </Container>
+    </Box>
   );
 };
 
