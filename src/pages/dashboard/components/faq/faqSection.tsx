@@ -10,6 +10,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Grid,
 } from "@mui/material";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
@@ -41,6 +42,16 @@ const FAQS: Faq[] = [
     q: "Is it suitable for clinical conditions?",
     a: "Yes, after an evaluation. When medical guidance is needed, we coordinate with your physician.",
   },
+
+  // ⭐ High-conversion extras (keep only if true)
+  {
+    q: "Do you offer online consultations?",
+    a: "Yes—online consultations are available. You’ll receive the same plan, resources and follow-ups as in-person visits.",
+  },
+  {
+    q: "How do I book a consultation?",
+    a: "You can book through the Contact page or message directly on WhatsApp. We’ll confirm availability and next steps.",
+  },
 ];
 
 const FaqSection: React.FC = () => {
@@ -69,82 +80,97 @@ const FaqSection: React.FC = () => {
             Frequently asked questions
           </Typography>
           <Typography color="text.secondary" sx={{ maxWidth: 760 }}>
-            Quick answers to the most common questions about visits, plans and follow-ups.
+            Quick answers to common questions about visits, plans and follow-ups.
           </Typography>
         </Stack>
 
-        {/* Content */}
-        <Card variant="strongBorder" sx={{ p: 4 }}>
-          <Stack spacing={1.25}>
+        {/* Content wrapper: softer highlight */}
+        <Card variant="softBorder" sx={{ p: { xs: 2, sm: 3 } }}>
+          {/* 2 columns on desktop */}
+          <Grid container spacing={1.25}>
             {FAQS.map((item, i) => (
-              <Accordion
-                key={i}
-                expanded={expanded === i}
-                onChange={handleChange(i)}
-                sx={{
-                  // un filo più “premium” rispetto al default:
-                  "& .MuiAccordionSummary-root": { px: { xs: 2, sm: 2.25 }, py: 1.25 },
-                  "& .MuiAccordionDetails-root": { px: { xs: 2, sm: 2.25 }, pb: 2 },
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={
-                    expanded === i ? (
-                      <RemoveRoundedIcon sx={{ color: "primary.main" }} />
-                    ) : (
-                      <AddRoundedIcon sx={{ color: "primary.main" }} />
-                    )
-                  }
-                  aria-controls={`faq-content-${i}`}
-                  id={`faq-header-${i}`}
+              <Grid key={i} size={{ xs: 12, md: 6 }}>
+                <Accordion
+                  expanded={expanded === i}
+                  onChange={handleChange(i)}
+                  sx={{
+                    // make it feel clickable & premium
+                    transition: "border-color .18s ease, background-color .18s ease",
+                    "&:hover": {
+                      borderColor: "primary.main",
+                      backgroundColor: "rgba(255,255,255,0.02)",
+                    },
+                    "& .MuiAccordionSummary-root": {
+                      px: { xs: 2, sm: 2.25 },
+                      py: 1.25,
+                      cursor: "pointer",
+                    },
+                    "& .MuiAccordionDetails-root": {
+                      px: { xs: 2, sm: 2.25 },
+                      pb: 2,
+                    },
+                  }}
                 >
-                  <Typography sx={{ fontWeight: 900 }}>{item.q}</Typography>
-                </AccordionSummary>
+                  <AccordionSummary
+                    expandIcon={
+                      expanded === i ? (
+                        <RemoveRoundedIcon sx={{ color: "primary.main" }} />
+                      ) : (
+                        <AddRoundedIcon sx={{ color: "primary.main" }} />
+                      )
+                    }
+                    aria-controls={`faq-content-${i}`}
+                    id={`faq-header-${i}`}
+                  >
+                    <Typography sx={{ fontWeight: 900 }}>{item.q}</Typography>
+                  </AccordionSummary>
 
-                <AccordionDetails id={`faq-content-${i}`}>
-                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.75 }}>
-                    {item.a}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
+                  <AccordionDetails id={`faq-content-${i}`}>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.75 }}
+                    >
+                      {item.a}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </Grid>
             ))}
+          </Grid>
 
-            {/* Footer CTA */}
-            <Box
-              sx={{
-                mt: 1,
-                p: { xs: 2, sm: 2.25 },
-                borderRadius: 3,
-                border: "1px solid",
-                borderColor: "divider",
-                bgcolor: "rgba(255,255,255,0.02)",
-              }}
+          {/* Footer CTA */}
+          <Box
+            sx={{
+              mt: 2,
+              p: { xs: 2, sm: 2.25 },
+              borderRadius: 3,
+              border: "1px solid",
+              borderColor: "divider",
+              bgcolor: "rgba(255,255,255,0.02)",
+            }}
+          >
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={1.25}
+              alignItems={{ sm: "center" }}
+              justifyContent="space-between"
             >
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={1.25}
-                alignItems={{ sm: "center" }}
-                justifyContent="space-between"
-              >
-                <Box>
-                  <Typography sx={{ fontWeight: 900 }}>Still have questions?</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Send a message and we’ll get back to you as soon as possible.
-                  </Typography>
-                </Box>
+              <Box>
+                <Typography sx={{ fontWeight: 900 }}>Still have questions?</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Send a message and we’ll get back to you as soon as possible.
+                </Typography>
+              </Box>
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  href="/contact"
-                  sx={{ flexShrink: 0 }}
-                >
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ flexShrink: 0 }}>
+                <Button variant="contained" color="primary" size="large" href="/contact">
                   Contact
                 </Button>
+
               </Stack>
-            </Box>
-          </Stack>
+            </Stack>
+          </Box>
         </Card>
       </Container>
     </Box>

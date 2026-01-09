@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  alpha,
   Box,
   Button,
   Card,
@@ -12,7 +11,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-
 
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -70,42 +68,47 @@ const STEPS: Step[] = [
     n: 4,
     title: "Ongoing support",
     text: "Quick answers to real-life questions so you stay consistent without stress.",
+    accent: true,
   },
 ];
 
 const WhatYouGetSection: React.FC = () => {
   return (
     <Box component="section" sx={{ py: { xs: 4, md: 6 } }}>
-      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto", border:`1px solid ${alpha("#fff", 0.06)}`, borderRadius: "12px", boxShadow:"4px 4px 8px rgba(245, 196, 0)", p:4 }}>
-        {/* Header */}
-        <Stack spacing={1} alignItems="center" textAlign="center">
-          <Chip
-            label="What you get"
-            sx={{
-              bgcolor: "transparent",
-              border: "1px solid",
-              borderColor: "divider",
-              color: "primary.main",
-              fontWeight: 900,
-            }}
-          />
-          <Typography variant="h3" sx={{ fontWeight: 900 }}>
-            A clear plan you can actually stick to
-          </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: 760 }}>
-            Not “just a diet”. You’ll get a practical method to improve habits,
-            keep your social life, and make progress sustainably.
-          </Typography>
-        </Stack>
+      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
+        {/* Wrapper “premium” (niente border/shadow nel Container) */}
+        <Card variant="strongBorder" sx={{ p: { xs: 2, sm: 3 } }}>
+          {/* Header */}
+          <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
+            <Chip
+              label="What you get"
+              sx={{
+                bgcolor: "transparent",
+                border: "1px solid",
+                borderColor: "divider",
+                color: "primary.main",
+                fontWeight: 900,
+              }}
+            />
 
-        {/* Content layout */}
-        <Card variant="plain" sx={{ pt: 3 }}>
+            <Typography variant="h3" sx={{ fontWeight: 900 }}>
+              A clear plan you can actually stick to
+            </Typography>
+
+            <Typography color="text.secondary" sx={{ maxWidth: 760 }}>
+              Not “just a diet”. You’ll get a practical method to improve habits,
+              keep your social life, and make progress sustainably.
+            </Typography>
+          </Stack>
+
+          {/* Content */}
           <Grid container spacing={3} alignItems="stretch">
             {/* LEFT: steps */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Card variant="plain" sx={{ height: "100%" }}>
                 <Stack spacing={2}>
-                  <Card variant="plain">
+                  {/* Steps panel */}
+                  <Card variant="darkBorder">
                     <CardContent sx={{ p: { xs: 2, sm: 2.25 } }}>
                       <Stack spacing={1.5}>
                         {STEPS.map((s, idx) => (
@@ -149,6 +152,7 @@ const WhatYouGetSection: React.FC = () => {
                     </CardContent>
                   </Card>
 
+                  {/* CTA row */}
                   <Stack
                     direction={{ xs: "column", sm: "row" }}
                     spacing={1.25}
@@ -171,7 +175,7 @@ const WhatYouGetSection: React.FC = () => {
                     </Button>
 
                     <Typography variant="caption" color="text.secondary">
-                      Usually replies within 24 hours • Online & in-person
+                      Typically replies within 24 hours • Online & in-person
                     </Typography>
                   </Stack>
                 </Stack>
@@ -182,7 +186,7 @@ const WhatYouGetSection: React.FC = () => {
             <Grid size={{ xs: 12, md: 6 }}>
               <Grid container spacing={2}>
                 {BENEFITS.map(({ title, text, Icon }) => (
-                  <Grid key={title} size={{ xs: 12, sm: 6 }}>
+                  <Grid size={{ xs: 12, sm: 6 }} key={title}>
                     <Card
                       variant="darkBorder"
                       sx={{

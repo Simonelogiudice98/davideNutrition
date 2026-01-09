@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Button,
@@ -5,16 +6,16 @@ import {
   CardContent,
   Chip,
   Container,
+  Divider,
+  Grid,
   Stack,
   Typography,
   Avatar,
-  Divider,
-  Grid,
 } from "@mui/material";
 
 import CheckIcon from "@mui/icons-material/Check";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import profilePhoto from '../../../../assets/images/expert/expert.jpg';
+import profilePhoto from "../../../../assets/images/expert/expert.jpg";
 
 export type MeetOurExpertProps = {
   title?: string;
@@ -25,7 +26,7 @@ export type MeetOurExpertProps = {
   studies?: string;
   registerId?: string;
   bullets?: string[];
-  photoUrl: string;
+  photoUrl?: string; // opzionale: se vuoi usare quello passato e non profilePhoto
   ctaPrimaryText?: string;
   ctaSecondaryText?: string;
   onPrimary?: () => void;
@@ -45,17 +46,17 @@ const getInitials = (name: string): string => {
 
 const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
   title = "Meet your expert",
-  subtitle = "A science-led approach, tailored to your lifestyle—clear, sustainable and results-driven.",
+  subtitle = "A science-led approach tailored to your lifestyle — clear, sustainable and results-driven.",
   fullName,
   role,
-  bioShort = "Nutritionist focused on body recomposition, habit building and long-term adherence—no extreme plans, no guesswork.",
+  bioShort = "Nutritionist focused on body recomposition, habit building and long-term adherence — no extreme plans, no guesswork.",
   studies,
   registerId,
   bullets = [
-    "Initial assessment & lifestyle audit",
+    "Initial assessment & lifestyle review",
     "Flexible, personalised meal plan",
     "Quick recipes + ready-to-use grocery list",
-    "Real follow-ups and adjustments",
+    "Follow-ups, adjustments and ongoing support",
   ],
   ctaPrimaryText = "Book your first visit",
   ctaSecondaryText = "Message on WhatsApp",
@@ -63,11 +64,25 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
   onSecondary,
   className,
 }) => {
+  const imageSrc = profilePhoto;
+
   return (
-    <Box component="section" className={className} sx={{ py: { xs: 4, md: 6 } }}>
-      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
-        {/* Header */}
-        <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
+    <Box
+      component="section"
+      className={className}
+      sx={{ py: { xs: 4, md: 6 } }}
+    >
+      <Container
+        maxWidth={false}
+        sx={{ width: "min(1100px, 96%)", mx: "auto" }}
+      >
+        {/* Header (più compatto) */}
+        <Stack
+          spacing={1}
+          alignItems="center"
+          textAlign="center"
+          sx={{ mb: 3 }}
+        >
           <Chip
             label={title}
             sx={{
@@ -88,19 +103,19 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
           </Typography>
         </Stack>
 
-        {/* Main layout */}
+        {/* Main card */}
         <Card variant="softBorder" sx={{ overflow: "hidden" }}>
           <Grid container>
-            {/* LEFT: Content */}
+            {/* LEFT */}
             <Grid size={{ xs: 12, md: 7 }}>
               <CardContent sx={{ p: { xs: 2.25, sm: 3.25 } }}>
                 <Stack spacing={2.25}>
-                  {/* Identity row */}
+                  {/* Identity */}
                   <Stack direction="row" spacing={1.5} alignItems="center">
                     <Avatar
                       sx={{
-                        width: 52,
-                        height: 52,
+                        width: 54,
+                        height: 54,
                         bgcolor: "rgba(245,196,0,.10)",
                         color: "primary.main",
                         fontWeight: 900,
@@ -112,11 +127,16 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     </Avatar>
 
                     <Box sx={{ minWidth: 0 }}>
-                      <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
+                      <Stack
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={{ xs: 0.5, sm: 1 }}
+                        alignItems={{ sm: "center" }}
+                        flexWrap="wrap"
+                      >
                         <Typography
                           sx={{
                             fontWeight: 900,
-                            fontSize: { xs: 18, sm: 20 },
+                            fontSize: { xs: 18, sm: 22 },
                             lineHeight: 1.1,
                           }}
                         >
@@ -127,7 +147,7 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                           <Chip
                             size="small"
                             icon={<VerifiedIcon style={{ marginLeft: 6 }} />}
-                            label={`Register: ${registerId}`}
+                            label={`Registration: ${registerId}`}
                             sx={{
                               bgcolor: "rgba(245,196,0,.06)",
                               color: "primary.main",
@@ -145,15 +165,24 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     </Box>
                   </Stack>
 
+                  {/* Bio + tags */}
                   {(bioShort || studies) && (
                     <Stack spacing={1.25}>
                       {bioShort && (
-                        <Typography color="text.secondary" sx={{ maxWidth: 680 }}>
+                        <Typography
+                          color="text.secondary"
+                          sx={{ maxWidth: 680 }}
+                        >
                           {bioShort}
                         </Typography>
                       )}
 
-                      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        flexWrap="wrap"
+                        useFlexGap
+                      >
                         {studies && (
                           <Chip
                             label={studies}
@@ -175,7 +204,7 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                           }}
                         />
                         <Chip
-                          label="Sustainable habits"
+                          label="Sustainable lifestyle"
                           size="small"
                           sx={{
                             bgcolor: "rgba(255,255,255,0.03)",
@@ -189,11 +218,15 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
 
                   <Divider sx={{ borderColor: "divider" }} />
 
-                  {/* Bullets as a “feature grid” */}
+                  {/* Bullets in a cleaner 2-col grid */}
                   <Grid container spacing={1.25}>
                     {bullets.map((b, i) => (
                       <Grid key={i} size={{ xs: 12, sm: 6 }}>
-                        <Stack direction="row" spacing={1} alignItems="flex-start">
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          alignItems="flex-start"
+                        >
                           <Box
                             sx={{
                               width: 22,
@@ -208,7 +241,9 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                               mt: "2px",
                             }}
                           >
-                            <CheckIcon sx={{ fontSize: 16, color: "primary.main" }} />
+                            <CheckIcon
+                              sx={{ fontSize: 16, color: "primary.main" }}
+                            />
                           </Box>
 
                           <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
@@ -219,57 +254,102 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     ))}
                   </Grid>
 
-                  {/* CTA row */}
-                  <Stack
-                    direction={{ xs: "column", sm: "row" }}
-                    spacing={1.25}
-                    sx={{ pt: 0.5 }}
+                  {/* CTA block (più “conversion”) */}
+                  <Card
+                    variant="darkBorder"
+                    sx={{
+                      p: { xs: 1.5, sm: 2 },
+                      bgcolor: "rgba(255,255,255,0.02)",
+                    }}
                   >
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      onClick={onPrimary}
-                      fullWidth
-                    >
-                      {ctaPrimaryText}
-                    </Button>
+                    <Stack spacing={1.25}>
+                      <Stack
+                        direction={{ xs: "column", sm: "row" }}
+                        spacing={1.25}
+                      >
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="large"
+                          onClick={onPrimary}
+                          fullWidth
+                        >
+                          {ctaPrimaryText}
+                        </Button>
 
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      size="large"
-                      onClick={onSecondary}
-                      fullWidth
-                      sx={{
-                        borderColor: "divider",
-                        "&:hover": { borderColor: "primary.main" },
-                      }}
-                    >
-                      {ctaSecondaryText}
-                    </Button>
-                  </Stack>
+                        <Button
+                          variant="outlined"
+                          color="primary"
+                          size="large"
+                          onClick={onSecondary}
+                          fullWidth
+                          sx={{
+                            borderColor: "divider",
+                            "&:hover": { borderColor: "primary.main" },
+                          }}
+                        >
+                          {ctaSecondaryText}
+                        </Button>
+                      </Stack>
 
-                  <Typography variant="caption" color="text.secondary">
-                    Typically replies within 24 hours • Online & in-person sessions
-                  </Typography>
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        flexWrap="wrap"
+                        useFlexGap
+                      >
+                        <Chip
+                          size="small"
+                          label="Online consultations"
+                          sx={{
+                            bgcolor: "rgba(255,255,255,0.03)",
+                            border: "1px solid",
+                            borderColor: "divider",
+                          }}
+                        />
+                        <Chip
+                          size="small"
+                          label="In-person visits"
+                          sx={{
+                            bgcolor: "rgba(255,255,255,0.03)",
+                            border: "1px solid",
+                            borderColor: "divider",
+                          }}
+                        />
+                        <Chip
+                          size="small"
+                          label="Follow-ups available"
+                          sx={{
+                            bgcolor: "rgba(255,255,255,0.03)",
+                            border: "1px solid",
+                            borderColor: "divider",
+                          }}
+                        />
+                      </Stack>
+
+                      <Typography variant="caption" color="text.secondary">
+                        Typically replies within 24 hours • Clear pricing • No
+                        spam
+                      </Typography>
+                    </Stack>
+                  </Card>
                 </Stack>
               </CardContent>
             </Grid>
 
-            {/* RIGHT: Photo + badge */}
-            <Grid size={{ xs: 12, md: 5 }}>
+            {/* RIGHT: image */}
+            <Grid size={{ xs: 12, md: 5 }} order={{ xs: 0, md: 1 }}>
               <Box
                 sx={{
                   position: "relative",
-                  height: { xs: 320, md: "100%" },
-                  minHeight: { md: 520 },
+                  height: { xs: 420, sm: 460, md: "100%" },
+                  minHeight: { md: 560 },
                   bgcolor: "background.default",
                 }}
               >
                 <Box
                   component="img"
-                  src={profilePhoto}
+                  src={imageSrc}
                   alt={fullName}
                   loading="lazy"
                   decoding="async"
@@ -279,12 +359,13 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    transform: "scale(1.02)",
-                    filter: "contrast(1.05) saturate(0.95)",
+                    objectPosition: { xs: "center 20%", md: "center" }, // ✅ sposta il focus verso l’alto
+                    transform: { xs: "none", md: "scale(1.02)" },
+                    backgroundColor: "background.default",
                   }}
                 />
 
-                {/* Bottom badge */}
+                {/* badge */}
                 <Box
                   sx={{
                     position: "absolute",
@@ -306,12 +387,12 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                         height: 10,
                         borderRadius: 999,
                         bgcolor: "primary.main",
-                        boxShadow: "0 0 18px rgba(245,196,0,.35)",
+                        boxShadow: "0 0 18px rgba(245,196,0,.25)",
                         flex: "0 0 auto",
                       }}
                     />
                     <Typography variant="body2" sx={{ fontWeight: 800 }}>
-                      Personalised plans, built for real life.
+                      Personalised plans — built for real life.
                     </Typography>
                   </Stack>
                 </Box>
