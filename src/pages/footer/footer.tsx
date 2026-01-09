@@ -60,7 +60,6 @@ const Footer: React.FC<Props> = ({
     >
       <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
         <Stack spacing={2}>
-          {/* Top row */}
           <Stack
             direction={{ xs: "column", md: "row" }}
             spacing={2}
@@ -78,7 +77,6 @@ const Footer: React.FC<Props> = ({
               </Typography>
             </Box>
 
-            {/* Contact actions */}
             <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap" useFlexGap>
               <Button
                 variant="outlined"
@@ -139,7 +137,6 @@ const Footer: React.FC<Props> = ({
 
           <Divider sx={{ borderColor: alpha(theme.palette.common.white, 0.08) }} />
 
-          {/* Bottom row */}
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={1.2}

@@ -76,9 +76,7 @@ const WhatYouGetSection: React.FC = () => {
   return (
     <Box component="section" sx={{ py: { xs: 4, md: 6 } }}>
       <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
-        {/* Wrapper “premium” (niente border/shadow nel Container) */}
         <Card variant="strongBorder" sx={{ p: { xs: 2, sm: 3 } }}>
-          {/* Header */}
           <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
             <Chip
               label="What you get"
@@ -101,13 +99,10 @@ const WhatYouGetSection: React.FC = () => {
             </Typography>
           </Stack>
 
-          {/* Content */}
           <Grid container spacing={3} alignItems="stretch">
-            {/* LEFT: steps */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Card variant="plain" sx={{ height: "100%" }}>
                 <Stack spacing={2}>
-                  {/* Steps panel */}
                   <Card variant="darkBorder">
                     <CardContent sx={{ p: { xs: 2, sm: 2.25 } }}>
                       <Stack spacing={1.5}>
@@ -152,7 +147,6 @@ const WhatYouGetSection: React.FC = () => {
                     </CardContent>
                   </Card>
 
-                  {/* CTA row */}
                   <Stack
                     direction={{ xs: "column", sm: "row" }}
                     spacing={1.25}
@@ -182,7 +176,6 @@ const WhatYouGetSection: React.FC = () => {
               </Card>
             </Grid>
 
-            {/* RIGHT: benefits */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Grid container spacing={2}>
                 {BENEFITS.map(({ title, text, Icon }) => (

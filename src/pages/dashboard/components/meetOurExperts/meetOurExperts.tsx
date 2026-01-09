@@ -26,7 +26,7 @@ export type MeetOurExpertProps = {
   studies?: string;
   registerId?: string;
   bullets?: string[];
-  photoUrl?: string; // opzionale: se vuoi usare quello passato e non profilePhoto
+  photoUrl?: string;
   ctaPrimaryText?: string;
   ctaSecondaryText?: string;
   onPrimary?: () => void;
@@ -76,7 +76,6 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
         maxWidth={false}
         sx={{ width: "min(1100px, 96%)", mx: "auto" }}
       >
-        {/* Header (più compatto) */}
         <Stack
           spacing={1}
           alignItems="center"
@@ -103,14 +102,11 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
           </Typography>
         </Stack>
 
-        {/* Main card */}
         <Card variant="softBorder" sx={{ overflow: "hidden" }}>
           <Grid container>
-            {/* LEFT */}
             <Grid size={{ xs: 12, md: 7 }}>
               <CardContent sx={{ p: { xs: 2.25, sm: 3.25 } }}>
                 <Stack spacing={2.25}>
-                  {/* Identity */}
                   <Stack direction="row" spacing={1.5} alignItems="center">
                     <Avatar
                       sx={{
@@ -165,7 +161,6 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     </Box>
                   </Stack>
 
-                  {/* Bio + tags */}
                   {(bioShort || studies) && (
                     <Stack spacing={1.25}>
                       {bioShort && (
@@ -218,7 +213,6 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
 
                   <Divider sx={{ borderColor: "divider" }} />
 
-                  {/* Bullets in a cleaner 2-col grid */}
                   <Grid container spacing={1.25}>
                     {bullets.map((b, i) => (
                       <Grid key={i} size={{ xs: 12, sm: 6 }}>
@@ -254,7 +248,6 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     ))}
                   </Grid>
 
-                  {/* CTA block (più “conversion”) */}
                   <Card
                     variant="darkBorder"
                     sx={{
@@ -336,8 +329,6 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                 </Stack>
               </CardContent>
             </Grid>
-
-            {/* RIGHT: image */}
             <Grid size={{ xs: 12, md: 5 }} order={{ xs: 0, md: 1 }}>
               <Box
                 sx={{
@@ -359,13 +350,12 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    objectPosition: { xs: "center 20%", md: "center" }, // ✅ sposta il focus verso l’alto
+                    objectPosition: { xs: "center 20%", md: "center" }, 
                     transform: { xs: "none", md: "scale(1.02)" },
                     backgroundColor: "background.default",
                   }}
                 />
 
-                {/* badge */}
                 <Box
                   sx={{
                     position: "absolute",

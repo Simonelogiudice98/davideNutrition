@@ -20,14 +20,14 @@ import fighter3 from "../../../../assets/images/testimonials/fighter_3.jpg";
 export type TestimonialType = "client" | "expert";
 
 export type Testimonial = {
-  type?: TestimonialType; // "client" | "expert"
+  type?: TestimonialType;
   name: string;
-  subtitle?: string; // e.g. "Pro fighter • Lightweight"
+  subtitle?: string; 
   text: string;
-  rating?: number; // 1..5
+  rating?: number; 
   initials?: string;
-  photoUrl?: string; // ✅
-  tag?: string; // small label on the photo (e.g., "Pro Fighter")
+  photoUrl?: string;
+  tag?: string; 
 };
 
 const defaultTestimonials: Testimonial[] = [
@@ -62,17 +62,6 @@ const defaultTestimonials: Testimonial[] = [
     tag: "MMA",
   },
 
-  // Optional expert card (if you want 2 fighters + 1 expert)
-  // {
-  //   type: "expert",
-  //   name: "Davide Maltagliati",
-  //   subtitle: "Registered Nutritionist",
-  //   text: "Science-led plans built around training demands, recovery and sustainability—so athletes can perform at their best year-round.",
-  //   rating: 5,
-  //   initials: "DM",
-  //   photoUrl: expertImg,
-  //   tag: "Expert",
-  // },
 ];
 
 function Stars({ value = 5 }: { value?: number }) {
@@ -117,7 +106,6 @@ function PhotoHeader({ t }: { t: Testimonial }) {
         bgcolor: "rgba(255,255,255,0.03)",
       }}
     >
-      {/* Photo (if available) */}
       {t.photoUrl ? (
         <Box
           component="img"
@@ -135,7 +123,6 @@ function PhotoHeader({ t }: { t: Testimonial }) {
           }}
         />
       ) : (
-        // Fallback placeholder area (still looks nice)
         <Box
           sx={{
             width: "100%",
@@ -146,7 +133,6 @@ function PhotoHeader({ t }: { t: Testimonial }) {
         />
       )}
 
-      {/* Overlay */}
       <Box
         sx={{
           position: "absolute",
@@ -156,7 +142,6 @@ function PhotoHeader({ t }: { t: Testimonial }) {
         }}
       />
 
-      {/* Top-left tag */}
       {(t.tag || isExpert) && (
         <Box sx={{ position: "absolute", top: 10, left: 10 }}>
           <Chip
@@ -174,7 +159,6 @@ function PhotoHeader({ t }: { t: Testimonial }) {
         </Box>
       )}
 
-      {/* Bottom-left avatar + name */}
       <Box sx={{ position: "absolute", left: 12, right: 12, bottom: 12 }}>
         <Stack direction="row" spacing={1.25} alignItems="center">
           <Avatar
@@ -242,7 +226,6 @@ export default function TestimonialsSection({
   return (
     <Box component="section" id="testimonials" sx={{ py: { xs: 4, md: 6 } }}>
       <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
-        {/* Header */}
         <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
           <Chip
             label="Testimonials"
@@ -263,7 +246,6 @@ export default function TestimonialsSection({
           </Typography>
         </Stack>
 
-        {/* Grid */}
         <Grid container spacing={2}>
           {testimonials.slice(0, 3).map((t, idx) => (
             <Grid key={idx} size={{ xs: 12, md: 4 }}>
@@ -277,10 +259,8 @@ export default function TestimonialsSection({
               >
                 <CardContent sx={{ p: { xs: 2, sm: 2.25 }, height: "100%" }}>
                   <Stack spacing={1.5} sx={{ height: "100%" }}>
-                    {/* PHOTO AREA */}
                     <PhotoHeader t={t} />
 
-                    {/* Stars + quote */}
                     <Stack direction="row" justifyContent="space-between" alignItems="center">
                       <Stars value={t.rating ?? 5} />
                       <Box
@@ -300,12 +280,10 @@ export default function TestimonialsSection({
                       </Box>
                     </Stack>
 
-                    {/* Quote */}
                     <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.75 }}>
                       “{t.text}”
                     </Typography>
 
-                    {/* Footer label */}
                     <Box sx={{ mt: "auto" }}>
                       <Typography variant="caption" color="text.secondary">
                         {t.type === "expert" ? "Nutrition professional" : "Athlete testimonial"}

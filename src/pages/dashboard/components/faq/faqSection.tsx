@@ -43,7 +43,6 @@ const FAQS: Faq[] = [
     a: "Yes, after an evaluation. When medical guidance is needed, we coordinate with your physician.",
   },
 
-  // ⭐ High-conversion extras (keep only if true)
   {
     q: "Do you offer online consultations?",
     a: "Yes—online consultations are available. You’ll receive the same plan, resources and follow-ups as in-person visits.",
@@ -64,7 +63,6 @@ const FaqSection: React.FC = () => {
   return (
     <Box component="section" id="faq" sx={{ py: { xs: 4, md: 6 } }}>
       <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
-        {/* Header */}
         <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
           <Chip
             label="FAQ"
@@ -84,9 +82,7 @@ const FaqSection: React.FC = () => {
           </Typography>
         </Stack>
 
-        {/* Content wrapper: softer highlight */}
         <Card variant="softBorder" sx={{ p: { xs: 2, sm: 3 } }}>
-          {/* 2 columns on desktop */}
           <Grid container spacing={1.25}>
             {FAQS.map((item, i) => (
               <Grid key={i} size={{ xs: 12, md: 6 }}>
@@ -94,7 +90,6 @@ const FaqSection: React.FC = () => {
                   expanded={expanded === i}
                   onChange={handleChange(i)}
                   sx={{
-                    // make it feel clickable & premium
                     transition: "border-color .18s ease, background-color .18s ease",
                     "&:hover": {
                       borderColor: "primary.main",
@@ -139,7 +134,6 @@ const FaqSection: React.FC = () => {
             ))}
           </Grid>
 
-          {/* Footer CTA */}
           <Box
             sx={{
               mt: 2,

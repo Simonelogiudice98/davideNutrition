@@ -4,9 +4,9 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 type Props = {
-  whatsapp?: string;   // es: "+39333111222" (senza spazi)
-  email?: string;      // es: "info@tuodominio.it"
-  message?: string;    // opzionale messaggio precompilato WhatsApp
+  whatsapp?: string;  
+  email?: string;     
+  message?: string;   
 };
 
 const encode = (s: string) => encodeURIComponent(s);

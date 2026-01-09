@@ -31,7 +31,7 @@ const NAV: NavItem[] = [
   { label: "FAQ", targetId: "faq" },
 ];
 
-const WHATSAPP_URL = "https://wa.me/39333111222"; // TODO: replace with real number
+const WHATSAPP_URL = "https://wa.me/39333111222";
 const CONTACT_URL = "/contact";
 
 const Header: React.FC = () => {
@@ -72,7 +72,6 @@ const Header: React.FC = () => {
           minHeight: "unset",
         }}
       >
-        {/* Logo */}
         <Box
           onClick={() => goTo("top")}
           sx={{
@@ -92,9 +91,7 @@ const Header: React.FC = () => {
               width: scrolled ? 44 : 54,
               height: scrolled ? 44 : 54,
               borderRadius: "50%",
-              transition: "width .2s ease, height .2s ease, box-shadow .2s ease",
-              boxShadow: scrolled ? "none" : "0 0 0 1px rgba(255,255,255,0.10)",
-              "&:hover": { boxShadow: "0 0 0 2px rgba(245,196,0,0.25)" },
+            
             }}
           />
           <Typography
@@ -111,7 +108,6 @@ const Header: React.FC = () => {
 
         <Box sx={{ flexGrow: 1 }} />
 
-        {/* Desktop nav */}
         <Stack
           direction="row"
           spacing={0.5}
@@ -134,7 +130,6 @@ const Header: React.FC = () => {
           ))}
         </Stack>
 
-        {/* Desktop CTAs */}
         <Stack direction="row" spacing={1} sx={{ display: { xs: "none", md: "flex" } }}>
           <Button
             variant="outlined"
@@ -154,7 +149,6 @@ const Header: React.FC = () => {
           </Button>
         </Stack>
 
-        {/* Language menu */}
         <IconButton
           size="large"
           onClick={(e) => setLangAnchor(e.currentTarget)}
@@ -224,7 +218,6 @@ const Header: React.FC = () => {
           </MenuItem>
         </Menu>
 
-        {/* Mobile menu button */}
         <IconButton
           size="large"
           edge="end"
@@ -244,7 +237,6 @@ const Header: React.FC = () => {
           <MenuIcon />
         </IconButton>
 
-        {/* Mobile drawer */}
         <Drawer
           anchor="right"
           open={drawerOpen}
