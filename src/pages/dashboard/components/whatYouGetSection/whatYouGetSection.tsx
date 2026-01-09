@@ -70,14 +70,13 @@ const STEPS: Step[] = [
     n: 4,
     title: "Ongoing support",
     text: "Quick answers to real-life questions so you stay consistent without stress.",
-    accent: true,
   },
 ];
 
 const WhatYouGetSection: React.FC = () => {
   return (
     <Box component="section" sx={{ py: { xs: 4, md: 6 } }}>
-      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto", border:`1px solid ${alpha("#fff", 0.06)}`, borderRadius: "12px", boxShadow:"2px 4px 4px rgba(245, 196, 0)", p:4 }}>
+      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto", border:`1px solid ${alpha("#fff", 0.06)}`, borderRadius: "12px", boxShadow:"4px 4px 8px rgba(245, 196, 0)", p:4 }}>
         {/* Header */}
         <Stack spacing={1} alignItems="center" textAlign="center">
           <Chip
@@ -185,7 +184,7 @@ const WhatYouGetSection: React.FC = () => {
                 {BENEFITS.map(({ title, text, Icon }) => (
                   <Grid key={title} size={{ xs: 12, sm: 6 }}>
                     <Card
-                      variant="softBorder"
+                      variant="darkBorder"
                       sx={{
                         height: "100%",
                         transition: "transform .18s ease, border-color .18s ease",

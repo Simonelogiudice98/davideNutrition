@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Button,
@@ -15,6 +14,7 @@ import {
 
 import CheckIcon from "@mui/icons-material/Check";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import profilePhoto from '../../../../assets/images/expert/expert.jpg';
 
 export type MeetOurExpertProps = {
   title?: string;
@@ -57,7 +57,6 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
     "Quick recipes + ready-to-use grocery list",
     "Real follow-ups and adjustments",
   ],
-  photoUrl,
   ctaPrimaryText = "Book your first visit",
   ctaSecondaryText = "Message on WhatsApp",
   onPrimary,
@@ -270,7 +269,7 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
               >
                 <Box
                   component="img"
-                  src={photoUrl}
+                  src={profilePhoto}
                   alt={fullName}
                   loading="lazy"
                   decoding="async"
@@ -282,16 +281,6 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     objectFit: "cover",
                     transform: "scale(1.02)",
                     filter: "contrast(1.05) saturate(0.95)",
-                  }}
-                />
-
-                {/* Premium overlay */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(90deg, rgba(12,12,12,.92) 0%, rgba(12,12,12,.55) 55%, rgba(12,12,12,.15) 100%)",
                   }}
                 />
 

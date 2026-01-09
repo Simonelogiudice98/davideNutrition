@@ -15,8 +15,6 @@ import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-import "./home.scss";
-
 import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
 import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 import FaqSection from "../faq/faqSection";
@@ -34,29 +32,29 @@ type Feature = {
 const FEATURES: Feature[] = [
   {
     id: "what",
-    title: "Cosa riceverai",
-    subtitle: "Piano nutrizionale, linee guida, ricette e follow-up",
+    title: "What you get",
+    subtitle: "Personalised plan, practical guidance, recipes and follow-ups",
     Icon: RestaurantMenuIcon,
     targetId: "what-you-get",
   },
   {
     id: "expert",
-    title: "Conosci il professionista",
-    subtitle: "Valutazione iniziale e obiettivi personalizzati",
+    title: "Meet your expert",
+    subtitle: "Initial assessment and tailored goals",
     Icon: PersonSearchIcon,
     targetId: "meet-expert",
   },
   {
     id: "testimonials",
-    title: "Testimonianze",
-    subtitle: "Storie reali e risultati raggiunti",
+    title: "Testimonials",
+    subtitle: "Real stories and real results",
     Icon: FormatQuoteIcon,
     targetId: "testimonials",
   },
   {
     id: "faq",
-    title: "Domande frequenti",
-    subtitle: "Dubbi comuni su dieta, visite e tempi",
+    title: "FAQ",
+    subtitle: "Common questions about plans, visits and timelines",
     Icon: HelpOutlineIcon,
     targetId: "faq",
   },
@@ -74,10 +72,10 @@ const Home: React.FC = () => {
       <FloatingContacts
         whatsapp="+39333111222"
         email="info@davidenutrition.it"
-        message="Ciao Davide! Vorrei informazioni sulle consulenze."
+        message="Hi Davide! I'd love to know more about your consultations."
       />
 
-      {/* HERO PANEL (le 4 card) */}
+      {/* HERO PANEL (4 quick cards) */}
       <Container
         maxWidth={false}
         sx={{
@@ -116,14 +114,10 @@ const Home: React.FC = () => {
                   <CardActionArea
                     onClick={() => goTo(targetId)}
                     sx={{ height: "100%" }}
-                    aria-label={`Vai alla sezione: ${title}`}
+                    aria-label={`Go to section: ${title}`}
                   >
                     <CardContent sx={{ height: "100%" }}>
-                      <Stack
-                        spacing={1.25}
-                        alignItems="center"
-                        textAlign="center"
-                      >
+                      <Stack spacing={1.25} alignItems="center" textAlign="center">
                         <Box
                           sx={{
                             width: 56,
@@ -154,27 +148,36 @@ const Home: React.FC = () => {
         </Card>
       </Container>
 
-      {/* SEZIONI */}
-      <Box id="what-you-get" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
+      {/* SECTIONS */}
+      <Box
+        id="what-you-get"
+        sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}
+      >
         <WhatYouGetSection />
       </Box>
 
-      <Box id="meet-expert" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
+      <Box
+        id="meet-expert"
+        sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}
+      >
         <MeetOurExperts
           fullName="Davide Maltagliati"
-          role="Biologo nutrizionista"
-          bioShort="Biologo nutrizionista, specializzato in educazione alimentare e ricomposizione corporea."
-          studies="Laurea magistrale in Scienze della Nutrizione — Londra"
+          role="Registered Nutritionist"
+          bioShort="Registered nutritionist specialising in nutrition education and body recomposition."
+          studies="MSc in Nutrition Science — London"
           registerId="AA_12345"
           photoUrl="/images/davide.jpg"
-          ctaPrimaryText="Prenota una visita"
-          ctaSecondaryText="Scrivimi su WhatsApp"
-          onPrimary={() => console.log("prenota")}
+          ctaPrimaryText="Book a consultation"
+          ctaSecondaryText="Message me on WhatsApp"
+          onPrimary={() => console.log("book")}
           onSecondary={() => console.log("whatsapp")}
         />
       </Box>
 
-      <Box id="testimonials" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
+      <Box
+        id="testimonials"
+        sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}
+      >
         <TestimonialsSection />
       </Box>
 

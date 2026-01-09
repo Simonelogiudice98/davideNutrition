@@ -1,8 +1,20 @@
-import styles from "./testimonialSection.module.scss";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 
 export type Testimonial = {
   name: string;
-  subtitle?: string; // es: "Ricomp. corporea • 12 settimane"
+  subtitle?: string; // e.g. "Body recomposition • 12 weeks"
   text: string;
   rating?: number; // 1..5
   initials?: string; // fallback avatar
@@ -11,22 +23,22 @@ export type Testimonial = {
 const defaultTestimonials: Testimonial[] = [
   {
     name: "Martina R.",
-    subtitle: "Ricomp. corporea • 12 settimane",
-    text: "Davide mi ha dato un metodo sostenibile: piano flessibile, ricette veloci e indicazioni super chiare. Ho migliorato energia e composizione senza “dieta punitiva”.",
+    subtitle: "Body recomposition • 12 weeks",
+    text: "Davide gave me a sustainable method: a flexible plan, quick recipes and crystal-clear guidance. I improved energy and body composition without a “punishing diet”.",
     rating: 5,
     initials: "MR",
   },
   {
     name: "Luca P.",
-    subtitle: "Dimagrimento • 8 kg",
-    text: "Follow-up costanti e aggiustamenti realistici. La cosa migliore è che riesco a gestire i pasti anche con lavoro e vita sociale. Risultati concreti e zero ansia.",
+    subtitle: "Fat loss • 8 kg",
+    text: "Consistent follow-ups and realistic adjustments. The best part is I can manage meals with work and a social life. Concrete results, zero anxiety.",
     rating: 5,
     initials: "LP",
   },
   {
     name: "Giulia S.",
-    subtitle: "Educazione alimentare",
-    text: "Finalmente ho capito cosa mangiare e quando, senza estremismi. Lista della spesa e alternative pratiche: mi ha semplificato tutto e mi sento molto più in controllo.",
+    subtitle: "Nutrition education",
+    text: "For the first time I understood what to eat and when—without extremes. The grocery list and practical alternatives made everything easier and I feel in control.",
     rating: 5,
     initials: "GS",
   },
@@ -35,25 +47,29 @@ const defaultTestimonials: Testimonial[] = [
 function Stars({ value = 5 }: { value?: number }) {
   const v = Math.max(0, Math.min(5, value));
   return (
-    <div className={styles.stars} aria-label={`Valutazione: ${v} su 5`}>
-      {Array.from({ length: 5 }).map((_, i) => {
-        const filled = i < v;
-        return (
-          <svg
-            key={i}
-            className={filled ? styles.starFilled : styles.starEmpty}
-            viewBox="0 0 24 24"
-            width="18"
-            height="18"
-            aria-hidden="true"
-          >
-            <path d="M12 17.3l-6.18 3.25 1.18-6.88L2 8.95l6.9-1L12 1.7l3.1 6.25 6.9 1-5 4.72 1.18 6.88z" />
-          </svg>
-        );
-      })}
-    </div>
+    <Stack direction="row" spacing={0.25} aria-label={`Rating: ${v} out of 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <StarIcon
+          key={i}
+          sx={{
+            fontSize: 18,
+            color: i < v ? "primary.main" : "rgba(255,255,255,0.18)",
+          }}
+        />
+      ))}
+    </Stack>
   );
 }
+
+const getInitials = (t: Testimonial) =>
+  (
+    t.initials ??
+    t.name
+      .split(" ")
+      .slice(0, 2)
+      .map((x) => x[0]?.toUpperCase())
+      .join("")
+  ).slice(0, 2) || "DN";
 
 export default function TestimonialsSection({
   testimonials = defaultTestimonials,
@@ -61,52 +77,120 @@ export default function TestimonialsSection({
   testimonials?: Testimonial[];
 }) {
   return (
-    <section id="testimonial" className={styles.section}>
-      <div className={styles.container}>
-        <div className={styles.panel}>
-          <header className={styles.header}>
-            <span className={styles.pill}>Testimonial</span>
-            <h2 className={styles.title}>Storie reali, risultati raggiunti</h2>
-            <p className={styles.subtitle}>
-              Esperienze di persone che hanno seguito un percorso concreto, sostenibile e personalizzato.
-            </p>
-          </header>
+    <Box component="section" id="testimonials" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
+        {/* Header */}
+        <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
+          <Chip
+            label="Testimonials"
+            sx={{
+              bgcolor: "transparent",
+              border: "1px solid",
+              borderColor: "divider",
+              color: "primary.main",
+              fontWeight: 900,
+            }}
+          />
 
-          <div className={styles.grid}>
-            {testimonials.slice(0, 3).map((t, idx) => (
-              <article key={idx} className={styles.card}>
-                <div className={styles.cardTop}>
-                  <div className={styles.iconBadge} aria-hidden="true">
-                    {/* quote icon */}
-                    <svg viewBox="0 0 24 24" width="18" height="18">
-                      <path d="M7.2 17.5H4.5c-.8 0-1.5-.7-1.5-1.5v-3.2C3 9.9 4.9 8 7.3 8h.9c.5 0 .8.4.8.8v1.3c0 .5-.4.8-.8.8h-.9c-.9 0-1.7.8-1.7 1.7V13h1.6c.9 0 1.6.7 1.6 1.6v1.3c0 .9-.7 1.6-1.6 1.6Zm12.3 0h-2.7c-.8 0-1.5-.7-1.5-1.5v-3.2c0-2.9 1.9-4.8 4.3-4.8h.9c.5 0 .8.4.8.8v1.3c0 .5-.4.8-.8.8h-.9c-.9 0-1.7.8-1.7 1.7V13h1.6c.9 0 1.6.7 1.6 1.6v1.3c0 .9-.7 1.6-1.6 1.6Z" />
-                    </svg>
-                  </div>
+          <Typography variant="h3" sx={{ fontWeight: 900 }}>
+            Real stories. Real results.
+          </Typography>
 
-                  <Stars value={t.rating ?? 5} />
-                </div>
+          <Typography color="text.secondary" sx={{ maxWidth: 760 }}>
+            Feedback from people who followed a clear, sustainable and personalised
+            journey—built for real life.
+          </Typography>
+        </Stack>
 
-                <p className={styles.text}>&ldquo;{t.text}&rdquo;</p>
+        {/* Grid */}
+        <Grid container spacing={2}>
+          {testimonials.slice(0, 3).map((t, idx) => (
+            <Grid key={idx} size={{ xs: 12, md: 4 }}>
+              <Card
+                variant="darkBorder"
+                sx={{
+                  height: "100%",
+                  transition: "transform .18s ease, border-color .18s ease",
+                  "&:hover": {
+                    transform: "translateY(-3px)",
+                    borderColor: "primary.main",
+                  },
+                }}
+              >
+                <CardContent sx={{ p: { xs: 2, sm: 2.25 } }}>
+                  <Stack spacing={1.5} sx={{ height: "100%" }}>
+                    {/* Top row */}
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                      <Box
+                        sx={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: 2.5,
+                          display: "grid",
+                          placeItems: "center",
+                          border: "1px solid",
+                          borderColor: "divider",
+                          bgcolor: "rgba(245,196,0,.06)",
+                        }}
+                        aria-hidden="true"
+                      >
+                        <FormatQuoteIcon sx={{ color: "primary.main", fontSize: 20 }} />
+                      </Box>
 
-                <footer className={styles.footer}>
-                  <div className={styles.avatar} aria-hidden="true">
-                    {t.initials ?? t.name
-                      .split(" ")
-                      .slice(0, 2)
-                      .map((x) => x[0]?.toUpperCase())
-                      .join("")}
-                  </div>
+                      <Stars value={t.rating ?? 5} />
+                    </Stack>
 
-                  <div className={styles.meta}>
-                    <div className={styles.name}>{t.name}</div>
-                    {t.subtitle && <div className={styles.metaLine}>{t.subtitle}</div>}
-                  </div>
-                </footer>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+                    {/* Quote */}
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "text.secondary",
+                        lineHeight: 1.75,
+                      }}
+                    >
+                      “{t.text}”
+                    </Typography>
+
+                    {/* Footer */}
+                    <Stack
+                      direction="row"
+                      spacing={1.25}
+                      alignItems="center"
+                      sx={{ pt: 0.5, mt: "auto" }}
+                    >
+                      <Avatar
+                        sx={{
+                          width: 40,
+                          height: 40,
+                          bgcolor: "rgba(245,196,0,.10)",
+                          color: "primary.main",
+                          fontWeight: 900,
+                          border: "1px solid",
+                          borderColor: "divider",
+                        }}
+                        aria-hidden="true"
+                      >
+                        {getInitials(t)}
+                      </Avatar>
+
+                      <Box sx={{ minWidth: 0 }}>
+                        <Typography sx={{ fontWeight: 900, lineHeight: 1.1 }}>
+                          {t.name}
+                        </Typography>
+                        {t.subtitle && (
+                          <Typography variant="body2" color="text.secondary">
+                            {t.subtitle}
+                          </Typography>
+                        )}
+                      </Box>
+                    </Stack>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }

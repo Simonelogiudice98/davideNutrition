@@ -3,8 +3,8 @@ import { alpha, createTheme } from "@mui/material/styles";
 const brand = "#f5c400ff";
 const cardBorder = `1px solid ${alpha("#fff", 0.06)}`;
 const cardShadow = "2px 4px 4px rgba(245, 196, 0)";
-const strongShadow = "4px 4px 10px rgba(245, 196, 0)";
-const darkShadow = "0 18px 70px rgba(0,0,0,.55)";
+const strongShadow = "4px 4px 8px rgba(245, 196, 0)";
+// const darkShadow = "0 18px 70px rgba(0,0,0,.55)";
 
 export const theme = createTheme({
   palette: {
@@ -62,7 +62,7 @@ export const theme = createTheme({
       props: { variant: "darkBorder" },
       style: {
         border: cardBorder,
-        boxShadow: darkShadow,
+        // boxShadow: darkShadow,
       },
     },
     {
