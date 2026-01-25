@@ -98,9 +98,7 @@ function PhotoHeader({ t }: { t: Testimonial }) {
     <Box
       sx={{
         position: "relative",
-        borderRadius: 3,
         overflow: "hidden",
-        border: "1px solid",
         borderColor: "divider",
         aspectRatio: "16 / 10",
         bgcolor: "rgba(255,255,255,0.03)",
@@ -150,7 +148,7 @@ function PhotoHeader({ t }: { t: Testimonial }) {
             sx={{
               bgcolor: "rgba(12,12,12,0.65)",
               border: "1px solid",
-              borderColor: "divider",
+              borderColor: "#F5C400",
               color: "text.primary",
               backdropFilter: "blur(10px)",
               fontWeight: 900,
@@ -191,7 +189,6 @@ function PhotoHeader({ t }: { t: Testimonial }) {
                     gap: 0.5,
                     px: 1,
                     py: 0.25,
-                    borderRadius: 999,
                     border: "1px solid",
                     borderColor: "divider",
                     bgcolor: "rgba(245,196,0,.06)",
@@ -227,16 +224,6 @@ export default function TestimonialsSection({
     <Box component="section" id="testimonials" sx={{ py: { xs: 4, md: 6 } }}>
       <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
         <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
-          <Chip
-            label="Testimonials"
-            sx={{
-              bgcolor: "transparent",
-              border: "1px solid",
-              borderColor: "divider",
-              color: "primary.main",
-              fontWeight: 900,
-            }}
-          />
           <Typography variant="h3" sx={{ fontWeight: 900 }}>
             Real stories. Real results.
           </Typography>
