@@ -8,19 +8,18 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
-  Button,
   Drawer,
   Stack,
   Typography,
   Divider,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import LanguageIcon from "@mui/icons-material/Language";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactCountryFlag from "react-country-flag";
 
-import logo from "../../assets/img/davide_nutrition_circle_pad60.svg";
+import logo from "../../assets/img/logo.png";
 
 type NavItem = { label: string; targetId: string };
 
@@ -30,9 +29,6 @@ const NAV: NavItem[] = [
   { label: "Testimonials", targetId: "testimonials" },
   { label: "FAQ", targetId: "faq" },
 ];
-
-const WHATSAPP_URL = "https://wa.me/39333111222";
-const CONTACT_URL = "/contact";
 
 const Header: React.FC = () => {
   const [langAnchor, setLangAnchor] = React.useState<null | HTMLElement>(null);
@@ -47,7 +43,9 @@ const Header: React.FC = () => {
   }, []);
 
   const goTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
     setDrawerOpen(false);
   };
 
@@ -56,7 +54,9 @@ const Header: React.FC = () => {
       position="sticky"
       elevation={0}
       sx={{
-        backgroundColor: scrolled ? "rgba(12,12,12,0.72)" : "rgba(12,12,12,0.45)",
+        backgroundColor: scrolled
+          ? "rgba(12,12,12,0.72)"
+          : "rgba(12,12,12,0.45)",
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid",
         borderColor: "divider",
@@ -65,11 +65,13 @@ const Header: React.FC = () => {
     >
       <Toolbar
         sx={{
-          width: "min(1100px, 96%)",
-          mx: "auto",
-          px: { xs: 1, sm: 2 },
+          width: "100%",
+          px: { xs: 1.5, sm: 3 }, 
           py: scrolled ? 1 : 1.5,
           minHeight: "unset",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <Box
@@ -88,154 +90,117 @@ const Header: React.FC = () => {
             src={logo}
             alt="Davide Nutrition"
             sx={{
-              width: scrolled ? 44 : 54,
-              height: scrolled ? 44 : 54,
-              borderRadius: "50%",
-            
+              width: { xs: scrolled ? 42 : 48, sm: scrolled ? 44 : 54 },
+              height: { xs: scrolled ? 42 : 48, sm: scrolled ? 44 : 54 },
             }}
           />
-          <Typography
-            sx={{
-              fontWeight: 900,
-              color: "#F5C400",
-              letterSpacing: -0.3,
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            Davide Nutrition
-          </Typography>
         </Box>
 
-        <Box sx={{ flexGrow: 1 }} />
-
-        <Stack
-          direction="row"
-          spacing={0.5}
-          sx={{ display: { xs: "none", md: "flex" }, mr: 1.5 }}
-        >
-          {NAV.map((n) => (
-            <Button
-              key={n.targetId}
-              onClick={() => goTo(n.targetId)}
-              sx={{
-                color: "text.secondary",
-                fontWeight: 800,
-                borderRadius: 999,
-                px: 1.5,
-                "&:hover": { color: "text.primary", backgroundColor: "rgba(255,255,255,0.04)" },
-              }}
-            >
-              {n.label}
-            </Button>
-          ))}
-        </Stack>
-
-        <Stack direction="row" spacing={1} sx={{ display: { xs: "none", md: "flex" } }}>
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<WhatsAppIcon />}
-            onClick={() => window.open(WHATSAPP_URL, "_blank")}
+        <Stack direction="row" spacing={1} alignItems="center">
+          <IconButton
+            size="large"
+            onClick={(e) => setLangAnchor(e.currentTarget)}
+            color="inherit"
             sx={{
-              borderColor: "divider",
-              "&:hover": { borderColor: "primary.main" },
-            }}
-          >
-            WhatsApp
-          </Button>
-
-          <Button variant="contained" color="primary" href={CONTACT_URL}>
-            Book
-          </Button>
-        </Stack>
-
-        <IconButton
-          size="large"
-          onClick={(e) => setLangAnchor(e.currentTarget)}
-          color="inherit"
-          sx={{
-            ml: 1,
-            color: "primary.main",
-            border: "1px solid",
-            borderColor: "divider",
-            borderRadius: 999,
-            width: 44,
-            height: 44,
-          }}
-          aria-label="Change language"
-        >
-          <LanguageIcon />
-        </IconButton>
-
-        <Menu
-          anchorEl={langAnchor}
-          open={Boolean(langAnchor)}
-          onClose={() => setLangAnchor(null)}
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          transformOrigin={{ vertical: "top", horizontal: "right" }}
-          PaperProps={{
-            sx: {
-              mt: 1,
-              borderRadius: 3,
+              color: "primary.main",
               border: "1px solid",
               borderColor: "divider",
-              backgroundImage: "none",
-            },
-          }}
-        >
-          <MenuItem
-            onClick={() => {
-              // i18n.changeLanguage("it");
-              setLangAnchor(null);
+              borderRadius: 999,
+              width: 44,
+              height: 44,
+            }}
+            aria-label="Change language"
+          >
+            <LanguageIcon />
+          </IconButton>
+
+          <Menu
+            anchorEl={langAnchor}
+            open={Boolean(langAnchor)}
+            onClose={() => setLangAnchor(null)}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
+            MenuListProps={{
+              sx: {
+                p: 0.5,
+                "& .MuiMenuItem-root": {
+                  borderRadius: 0,
+                  px: 1.25,
+                  py: 0.9,
+                  gap: 1,
+                  fontWeight: 700,
+                  "&:hover": { backgroundColor: "rgba(255,255,255,0.06)" },
+                },
+                "& .MuiListItemIcon-root": { minWidth: 34 },
+              },
+            }}
+            PaperProps={{
+              sx: {
+                mt: 1,
+                minWidth: 190,
+                borderRadius: 0,
+                border: "1px solid rgba(255,255,255,0.10)",
+                backgroundColor: "rgba(12,12,12,0.90)",
+                backdropFilter: "blur(10px)",
+                backgroundImage: "none",
+                boxShadow: "0 14px 40px rgba(0,0,0,0.45)",
+                overflow: "hidden",
+              },
             }}
           >
-            <ListItemIcon sx={{ minWidth: 36 }}>
-              <ReactCountryFlag
-                countryCode="IT"
-                svg
-                style={{ width: 20, height: 14, borderRadius: 2 }}
-                title="Italiano"
-              />
-            </ListItemIcon>
-            <ListItemText primary="Italiano" />
-          </MenuItem>
+            <MenuItem
+              onClick={() => {
+                // i18n.changeLanguage("it");
+                setLangAnchor(null);
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: 36 }}>
+                <ReactCountryFlag
+                  countryCode="IT"
+                  svg
+                  style={{ width: 20, height: 14, borderRadius: 2 }}
+                  title="Italiano"
+                />
+              </ListItemIcon>
+              <ListItemText primary="Italiano" />
+            </MenuItem>
 
-          <MenuItem
-            onClick={() => {
-              // i18n.changeLanguage("en");
-              setLangAnchor(null);
+            <MenuItem
+              onClick={() => {
+                // i18n.changeLanguage("en");
+                setLangAnchor(null);
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: 36 }}>
+                <ReactCountryFlag
+                  countryCode="GB"
+                  svg
+                  style={{ width: 20, height: 14, borderRadius: 2 }}
+                  title="English"
+                />
+              </ListItemIcon>
+              <ListItemText primary="English" />
+            </MenuItem>
+          </Menu>
+
+          <IconButton
+            size="large"
+            edge="end"
+            onClick={() => setDrawerOpen((v) => !v)}
+            sx={{
+              color: "#F5C400",
+              border: "1px solid",
+              borderColor: "divider",
+              borderRadius: 999,
+              width: 44,
+              height: 44,
+              "&:hover": { backgroundColor: "rgba(245,196,0,0.08)" },
             }}
+            aria-label={drawerOpen ? "Close menu" : "Open menu"}
           >
-            <ListItemIcon sx={{ minWidth: 36 }}>
-              <ReactCountryFlag
-                countryCode="GB"
-                svg
-                style={{ width: 20, height: 14, borderRadius: 2 }}
-                title="English"
-              />
-            </ListItemIcon>
-            <ListItemText primary="English" />
-          </MenuItem>
-        </Menu>
-
-        <IconButton
-          size="large"
-          edge="end"
-          onClick={() => setDrawerOpen(true)}
-          sx={{
-            ml: 1,
-            display: { xs: "inline-flex", md: "none" },
-            color: "text.primary",
-            border: "1px solid",
-            borderColor: "divider",
-            borderRadius: 999,
-            width: 44,
-            height: 44,
-          }}
-          aria-label="Open menu"
-        >
-          <MenuIcon />
-        </IconButton>
+            <MenuIcon />
+          </IconButton>
+        </Stack>
 
         <Drawer
           anchor="right"
@@ -252,9 +217,16 @@ const Header: React.FC = () => {
           }}
         >
           <Box sx={{ p: 2 }}>
-            <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
               <Typography sx={{ fontWeight: 900 }}>Menu</Typography>
-              <IconButton onClick={() => setDrawerOpen(false)} aria-label="Close menu">
+              <IconButton
+                onClick={() => setDrawerOpen(false)}
+                aria-label="Close menu"
+              >
                 <CloseIcon />
               </IconButton>
             </Stack>
@@ -280,31 +252,6 @@ const Header: React.FC = () => {
                   {n.label}
                 </Button>
               ))}
-            </Stack>
-
-            <Divider sx={{ my: 2, borderColor: "divider" }} />
-
-            <Stack spacing={1}>
-              <Button
-                variant="contained"
-                color="primary"
-                href={CONTACT_URL}
-                size="large"
-                fullWidth
-              >
-                Book a consultation
-              </Button>
-              <Button
-                variant="outlined"
-                color="primary"
-                startIcon={<WhatsAppIcon />}
-                onClick={() => window.open(WHATSAPP_URL, "_blank")}
-                size="large"
-                fullWidth
-                sx={{ borderColor: "divider", "&:hover": { borderColor: "primary.main" } }}
-              >
-                WhatsApp
-              </Button>
             </Stack>
           </Box>
         </Drawer>
