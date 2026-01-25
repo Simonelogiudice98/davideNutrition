@@ -44,42 +44,44 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: "none",
+          borderRadius: 0, 
         },
       },
       variants: [
         {
-          props: { variant: "softBorder"},
+          props: { variant: "softBorder" },
           style: {
             border,
             backgroundColor: paper,
             boxShadow: `${shadowBase}, ${ringGoldSoft}`,
+            borderRadius: 0,
           },
         },
-
         {
           props: { variant: "plain" },
           style: {
             border: "none",
             backgroundColor: "transparent",
             boxShadow: "none",
+            borderRadius: 0,
           },
         },
-
         {
-          props: { variant: "darkBorder"},
+          props: { variant: "darkBorder" },
           style: {
             border,
             backgroundColor: paper,
             boxShadow: shadowBase,
+            borderRadius: 0, 
           },
         },
-
         {
-          props: { variant: "strongBorder"},
+          props: { variant: "strongBorder" },
           style: {
             border: borderStrong,
             backgroundColor: paper,
             boxShadow: `${shadowBase}, ${ringGoldStrong}`,
+            borderRadius: 0, 
           },
         },
       ],
@@ -88,7 +90,7 @@ export const theme = createTheme({
     MuiCardActionArea: {
       styleOverrides: {
         root: {
-          borderRadius: 18,
+          borderRadius: 0,
         },
       },
     },

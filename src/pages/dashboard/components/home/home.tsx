@@ -12,7 +12,6 @@ import {
 
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
@@ -20,6 +19,7 @@ import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 import FaqSection from "../faq/faqSection";
 import TestimonialsSection from "../testimonial/testimonialSection";
 import FloatingContacts from "../floatingContacts/FloatingContacts";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 import heroImg from "../../../../assets/images/hero/hero-nutrition.jpg";
 
@@ -50,7 +50,7 @@ const FEATURES: Feature[] = [
     id: "testimonials",
     title: "Testimonials",
     subtitle: "Real stories and real results",
-    Icon: FormatQuoteIcon,
+    Icon: EmojiEventsIcon,
     targetId: "testimonials",
   },
   {
@@ -64,7 +64,9 @@ const FEATURES: Feature[] = [
 
 const Home: React.FC = () => {
   const goTo = useCallback((id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   return (
@@ -75,7 +77,10 @@ const Home: React.FC = () => {
         message="Hi Davide! I'd love to know more about your consultations."
       />
 
-      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
+      <Container
+        maxWidth={false}
+        sx={{ width: "min(1100px, 96%)", mx: "auto" }}
+      >
         <Card variant="plain" sx={{ p: { xs: 2, sm: 3 } }}>
           <Grid container spacing={3} alignItems="center">
             <Grid size={{ xs: 12, md: 7 }}>
@@ -84,17 +89,16 @@ const Home: React.FC = () => {
                 alignItems={{ xs: "center", md: "flex-start" }}
                 textAlign={{ xs: "center", md: "left" }}
               >
-                <Typography variant="h3" sx={{ fontWeight: 900 }}>
-                  Get in shape with smart nutrition
+                <Typography variant="h3" sx={{ fontWeight: "bold", fontFamily: "'montserrat', sans-serif" }}>
+                  Davide Nutrition
                 </Typography>
 
-                <Typography color="text.secondary" sx={{ maxWidth: 650 }}>
-                  A science-led plan tailored to your lifestyle—built for real progress,
-                  consistency, and performance.
+                <Typography color="text.secondary" sx={{ maxWidth: 650, fontWeight:"bold"}}>
+                  practical nutrition support for athletes, gym-goers, and active individuals
                 </Typography>
 
-                <Typography variant="caption" color="text.secondary">
-                  Evidence-based • Online & in-person • Follow-ups available
+                <Typography variant="caption" color="text.secondary" sx={{fontWeight:"italic"}}>
+                  specialised in supporting combat athletes through weight cuts, weigh-ins, and fight camp — so you make weight without sacrificing performance
                 </Typography>
               </Stack>
             </Grid>
@@ -146,10 +150,10 @@ const Home: React.FC = () => {
                       borderColor: "divider",
                       bgcolor: "rgba(12,12,12,0.65)",
                       backdropFilter: "blur(10px)",
-                      opacity: 0.5 
+                      opacity: 0.5,
                     }}
                   >
-                    <Typography variant="body2" sx={{ fontWeight: 800, }}>
+                    <Typography variant="body2" sx={{ fontWeight: 800 }}>
                       Built for performance & real life.
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
@@ -166,11 +170,14 @@ const Home: React.FC = () => {
               {FEATURES.map(({ id, title, subtitle, Icon, targetId }) => (
                 <Grid key={id} size={{ xs: 12, sm: 6, md: 3 }}>
                   <Card
-                    variant="softBorder"
+                    variant="plain"
                     sx={{
                       height: "100%",
                       transition: "transform .18s ease, border-color .18s ease",
-                      "&:hover": { transform: "translateY(-3px)", borderColor: "primary.main" },
+                      "&:hover": {
+                        transform: "translateY(-3px)",
+                        borderColor: "primary.main",
+                      },
                       "&:focus-within": {
                         outline: "2px solid",
                         outlineColor: "primary.main",
@@ -184,7 +191,11 @@ const Home: React.FC = () => {
                       aria-label={`Go to section: ${title}`}
                     >
                       <CardContent sx={{ height: "100%" }}>
-                        <Stack spacing={1.25} alignItems="center" textAlign="center">
+                        <Stack
+                          spacing={1.25}
+                          alignItems="center"
+                          textAlign="center"
+                        >
                           <Box
                             sx={{
                               width: 56,
@@ -197,10 +208,16 @@ const Home: React.FC = () => {
                               bgcolor: "rgba(245,196,0,.06)",
                             }}
                           >
-                            <Icon sx={{ fontSize: 28, color: "primary.main" }} />
+                            <Icon
+                              sx={{ fontSize: 28, color: "primary.main" }}
+                            />
                           </Box>
 
-                          <Typography fontWeight={900}>{title}</Typography>
+                          <Typography
+                            sx={{ fontWeight: 900, color: "primary.main" }}
+                          >
+                            {title}
+                          </Typography>
 
                           <Typography variant="body2" color="text.secondary">
                             {subtitle}
