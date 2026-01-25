@@ -14,7 +14,7 @@ import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
+// import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
 import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 import FaqSection from "../faq/faqSection";
 import TestimonialsSection from "../testimonial/testimonialSection";
@@ -233,17 +233,11 @@ const Home: React.FC = () => {
         </Card>
       </Container>
 
-      <Box id="what-you-get" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
-        <WhatYouGetSection />
-      </Box>
-
       <Box id="meet-expert" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
         <MeetOurExperts
           fullName="Davide Maltagliati"
           role="Registered Nutritionist"
           bioShort="Registered nutritionist specialising in nutrition education and body recomposition."
-          studies="MSc in Nutrition Science — London"
-          registerId="AA_12345"
           photoUrl="/images/davide.jpg"
           ctaPrimaryText="Book a consultation"
           ctaSecondaryText="Message me on WhatsApp"
