@@ -44,7 +44,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: "none",
-          borderRadius: 0, 
+          borderRadius: 0,
         },
       },
       variants: [
@@ -72,7 +72,7 @@ export const theme = createTheme({
             border,
             backgroundColor: paper,
             boxShadow: shadowBase,
-            borderRadius: 0, 
+            borderRadius: 0,
           },
         },
         {
@@ -81,7 +81,7 @@ export const theme = createTheme({
             border: borderStrong,
             backgroundColor: paper,
             boxShadow: `${shadowBase}, ${ringGoldStrong}`,
-            borderRadius: 0, 
+            borderRadius: 0,
           },
         },
       ],
@@ -109,7 +109,7 @@ export const theme = createTheme({
         root: {
           backgroundImage: "none",
           border,
-          borderRadius: 16,
+          borderRadius: 0,
           overflow: "hidden",
           boxShadow: "none",
           "&:before": { display: "none" },

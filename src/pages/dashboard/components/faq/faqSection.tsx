@@ -1,9 +1,7 @@
 import React from "react";
 import {
   Box,
-  Button,
   Card,
-  Chip,
   Container,
   Stack,
   Typography,
@@ -62,35 +60,39 @@ const FaqSection: React.FC = () => {
 
   return (
     <Box component="section" id="faq" sx={{ py: { xs: 4, md: 6 } }}>
-      <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
-        <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
-          <Chip
-            label="FAQ"
-            sx={{
-              bgcolor: "transparent",
-              border: "1px solid",
-              borderColor: "divider",
-              color: "primary.main",
-              fontWeight: 900,
-            }}
-          />
+      <Container
+        maxWidth={false}
+        sx={{ width: "min(1100px, 96%)", mx: "auto" }}
+      >
+        <Stack
+          spacing={1}
+          alignItems="center"
+          textAlign="center"
+          sx={{ mb: 3 }}
+        >
           <Typography variant="h3" sx={{ fontWeight: 900 }}>
             Frequently asked questions
           </Typography>
           <Typography color="text.secondary" sx={{ maxWidth: 760 }}>
-            Quick answers to common questions about visits, plans and follow-ups.
+            Quick answers to common questions about visits, plans and
+            follow-ups.
           </Typography>
         </Stack>
 
-        <Card variant="softBorder" sx={{ p: { xs: 2, sm: 3 } }}>
+        <Card variant="plain" sx={{ p: { xs: 2, sm: 3 } }}>
           <Grid container spacing={1.25}>
             {FAQS.map((item, i) => (
               <Grid key={i} size={{ xs: 12, md: 6 }}>
                 <Accordion
+                  square
                   expanded={expanded === i}
                   onChange={handleChange(i)}
                   sx={{
-                    transition: "border-color .18s ease, background-color .18s ease",
+                    borderRadius: 0,
+                    overflow: "hidden",
+                    "&:before": { display: "none" },
+                    transition:
+                      "border-color .18s ease, background-color .18s ease",
                     "&:hover": {
                       borderColor: "primary.main",
                       backgroundColor: "rgba(255,255,255,0.02)",
@@ -133,38 +135,6 @@ const FaqSection: React.FC = () => {
               </Grid>
             ))}
           </Grid>
-
-          <Box
-            sx={{
-              mt: 2,
-              p: { xs: 2, sm: 2.25 },
-              borderRadius: 3,
-              border: "1px solid",
-              borderColor: "divider",
-              bgcolor: "rgba(255,255,255,0.02)",
-            }}
-          >
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={1.25}
-              alignItems={{ sm: "center" }}
-              justifyContent="space-between"
-            >
-              <Box>
-                <Typography sx={{ fontWeight: 900 }}>Still have questions?</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Send a message and we’ll get back to you as soon as possible.
-                </Typography>
-              </Box>
-
-              <Stack direction={{ xs: "column", sm: "row" }} spacing={1} sx={{ flexShrink: 0 }}>
-                <Button variant="contained" color="primary" size="large" href="/contact">
-                  Contact
-                </Button>
-
-              </Stack>
-            </Stack>
-          </Box>
         </Card>
       </Container>
     </Box>
