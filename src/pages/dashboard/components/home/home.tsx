@@ -22,6 +22,7 @@ import FloatingContacts from "../floatingContacts/FloatingContacts";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 import heroImg from "../../../../assets/images/hero/hero-nutrition.jpg";
+import NutritionPlan from "../nutritionalPlan/nutritionalPlan";
 
 type Feature = {
   id: string;
@@ -248,6 +249,9 @@ const Home: React.FC = () => {
 
       <Box id="testimonials" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
         <TestimonialsSection />
+      </Box>
+      <Box id="plans" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
+        <NutritionPlan />
       </Box>
 
       <Box id="faq" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>

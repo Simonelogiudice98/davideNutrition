@@ -33,14 +33,6 @@ const NAV: NavItem[] = [
 const Header: React.FC = () => {
   const [langAnchor, setLangAnchor] = React.useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [scrolled, setScrolled] = React.useState(false);
-
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const goTo = (id: string) => {
     document
@@ -54,9 +46,7 @@ const Header: React.FC = () => {
       position="sticky"
       elevation={0}
       sx={{
-        backgroundColor: scrolled
-          ? "rgba(12,12,12,0.72)"
-          : "rgba(12,12,12,0.45)",
+        backgroundColor:"rgba(12,12,12,0.45)",
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid",
         borderColor: "divider",
@@ -67,7 +57,7 @@ const Header: React.FC = () => {
         sx={{
           width: "100%",
           px: { xs: 1.5, sm: 3 }, 
-          py: scrolled ? 1 : 1.5,
+          py:1.5,
           minHeight: "unset",
           display: "flex",
           alignItems: "center",
@@ -90,8 +80,8 @@ const Header: React.FC = () => {
             src={logo}
             alt="Davide Nutrition"
             sx={{
-              width: { xs: scrolled ? 42 : 48, sm: scrolled ? 44 : 54 },
-              height: { xs: scrolled ? 42 : 48, sm: scrolled ? 44 : 54 },
+              width: { xs: 48, sm:54 },
+              height: { xs:48, sm:54 },
             }}
           />
         </Box>
