@@ -13,8 +13,6 @@ import {
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-
-// import WhatYouGetSection from "../whatYouGetSection/whatYouGetSection";
 import MeetOurExperts from "../meetOurExperts/meetOurExperts";
 import FaqSection from "../faq/faqSection";
 import TestimonialsSection from "../testimonial/testimonialSection";
@@ -23,6 +21,8 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 import heroImg from "../../../../assets/images/hero/hero-nutrition.jpg";
 import NutritionPlan from "../nutritionalPlan/nutritionalPlan";
+import SeminarEnquirySection from "../seminarEnquirySection/seminarEnquirySection";
+import seminarImg from "../../../../assets/images/hero/seminar.jpg";
 
 type Feature = {
   id: string;
@@ -38,7 +38,7 @@ const FEATURES: Feature[] = [
     title: "What you get",
     subtitle: "Personalised plan, practical guidance, recipes and follow-ups",
     Icon: RestaurantMenuIcon,
-    targetId: "what-you-get",
+    targetId: "plans",
   },
   {
     id: "expert",
@@ -90,16 +90,32 @@ const Home: React.FC = () => {
                 alignItems={{ xs: "center", md: "flex-start" }}
                 textAlign={{ xs: "center", md: "left" }}
               >
-                <Typography variant="h3" sx={{ fontWeight: "bold", fontFamily: "'montserrat', sans-serif" }}>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: "bold",
+                    fontFamily: "'montserrat', sans-serif",
+                  }}
+                >
                   Davide Nutrition
                 </Typography>
 
-                <Typography color="text.secondary" sx={{ maxWidth: 650, fontWeight:"bold"}}>
-                  practical nutrition support for athletes, gym-goers, and active individuals
+                <Typography
+                  color="text.secondary"
+                  sx={{ maxWidth: 650, fontWeight: "bold" }}
+                >
+                  practical nutrition support for athletes, gym-goers, and
+                  active individuals
                 </Typography>
 
-                <Typography variant="caption" color="text.secondary" sx={{fontWeight:"italic"}}>
-                  specialised in supporting combat athletes through weight cuts, weigh-ins, and fight camp — so you make weight without sacrificing performance
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ fontWeight: "italic" }}
+                >
+                  specialised in supporting combat athletes through weight cuts,
+                  weigh-ins, and fight camp — so you make weight without
+                  sacrificing performance
                 </Typography>
               </Stack>
             </Grid>
@@ -256,6 +272,16 @@ const Home: React.FC = () => {
 
       <Box id="faq" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
         <FaqSection />
+      </Box>
+      
+      <Box sx={{ mt: { xs: 2, md: 3 } }}>
+        <SeminarEnquirySection
+          id="seminar"
+          imageSrc={seminarImg}
+          onSubmit={(values) => {
+            console.log(values);
+          }}
+        />
       </Box>
     </Box>
   );
