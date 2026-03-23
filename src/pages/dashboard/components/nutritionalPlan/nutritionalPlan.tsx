@@ -3,7 +3,6 @@ import {
   Box,
   Card,
   CardContent,
-  Chip,
   Container,
   Divider,
   Grid,
@@ -41,18 +40,12 @@ function PlanCard({ plan }: { plan: Plan }) {
         overflow: "hidden",
         position: "relative",
         borderRadius: 0,
+        border: "1.5px solid #F5C400",
         transition:
           "transform .18s ease, box-shadow .18s ease, border-color .18s ease",
         "&:hover": {
           transform: "translateY(-6px)",
-        },
-
-        "&:before": {
-          content: '""',
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          background:`radial-gradient(900px 420px at 50% 0%, ${alpha("#fff", 0.06)}, transparent 62%)`,
+          border: "1.5px solid #F5C400",
         },
       }}
     >
@@ -76,21 +69,11 @@ function PlanCard({ plan }: { plan: Plan }) {
               placeItems: "center",
               backgroundColor: alpha(brand, plan.featured ? 0.14 : 0.08),
               boxShadow: `0 10px 26px ${alpha("#000", 0.35)}`,
-              border: `1px solid ${alpha("#fff", 0.08)}`,
+              border: `1px solid #F5C400 `,
             }}
           >
             {plan.icon}
           </Box>
-
-          <Chip
-            label={plan.label}
-            sx={{
-              fontWeight: 900,
-              letterSpacing: 0.2,
-              backgroundColor: alpha(brand, plan.featured ? 0.18 : 0.12),
-              border: `1px solid ${alpha(brand, plan.featured ? 0.28 : 0.18)}`,
-            }}
-          />
 
           <Box>
             <Typography
@@ -99,6 +82,7 @@ function PlanCard({ plan }: { plan: Plan }) {
                 fontWeight: 950,
                 letterSpacing: -0.4,
                 textTransform: "uppercase",
+                color: "#F5C400"
               }}
             >
               {plan.title}
@@ -160,30 +144,31 @@ function PlanCard({ plan }: { plan: Plan }) {
   );
 }
 
+
+
+
 export default function NutritionPlan() {
   const theme = useTheme();
   const brand = theme.palette.primary.main;
 
   const plans: Plan[] = [
     {
-      id: "combat",
-      label: "Fight Camp Support",
-      title: "Combat Sport Athlete",
+      id: "weight",
+      label: "Body Recomp",
+      title: "Weight Management",
       description:
-        "Full fight-camp support: weight cut strategy, weigh-in protocol and performance-focused nutrition.",
-      price: "240€",
-      priceHint: "Covers up to 8 weeks",
-      suitableFor: "MMA, Boxing, Kickboxing, Grappling",
-      icon: <SportsMmaIcon sx={{ color: brand }} />,
-      featured: true,
+        "Supports your Weight loss/Body Recomposition journey",
+      price: "160€",
+      priceHint: "Program package",
+      suitableFor:
+        "Beginners getting into fitness, Gym-goers aiming for fat loss or body recomposition, Busy people who want structure without extremes",
+      icon: <FitnessCenterIcon sx={{ color: brand }} />,
       features: [
-        "Initial assessment + targets for fight camp",
-        "Weekly tailored nutrition plan (training + rest days)",
-        "Supplement & heat acclimation protocol (if needed)",
-        "Custom weight-cut plan + water/sodium strategy",
-        "Weigh-in + refuel protocol to perform at your best",
-        "Post-fight recovery nutrition & adjustments",
-        "Weekly check-ins and plan refinement",
+        "First consultation/assessment (45 minutes)",
+        "Nutritional plan (delivered within 7 days)",
+        "Grocery Shopping List",
+        "Weekly WhatsApp correspondence",
+        "Two free follow-ups at 4 and 8 weeks (30 minutes each)" ,
       ],
     },
     {
@@ -206,23 +191,24 @@ export default function NutritionPlan() {
       ],
     },
     {
-      id: "weight",
-      label: "Body Recomp",
-      title: "Weight Management",
+      id: "combat",
+      label: "Fight Camp Support",
+      title: "Combat Sport Athlete",
       description:
-        "A realistic plan to lose fat, improve habits, and stay consistent — without extreme restrictions.",
-      price: "160€",
-      priceHint: "Program package",
-      suitableFor:
-        "Anybody: gym enthusiasts, active individuals, general population",
-      icon: <FitnessCenterIcon sx={{ color: brand }} />,
+        "Full fight-camp support: weight cut strategy, weigh-in protocol and performance-focused nutrition.",
+      price: "240€",
+      priceHint: "Covers up to 8 weeks",
+      suitableFor: "MMA, Boxing, Kickboxing, Grappling",
+      icon: <SportsMmaIcon sx={{ color: brand }} />,
+      featured: true,
       features: [
-        "Initial assessment + habit-based strategy",
-        "Simple meal structure you can actually follow",
-        "Flexible approach for social life and routines",
-        "Weekly check-ins and accountability",
-        "Adjustments to avoid plateaus",
-        "Education: you’ll learn what works for you",
+        "Initial assessment + targets for fight camp",
+        "Weekly tailored nutrition plan (training + rest days)",
+        "Supplement & heat acclimation protocol (if needed)",
+        "Custom weight-cut plan + water/sodium strategy",
+        "Weigh-in + refuel protocol to perform at your best",
+        "Post-fight recovery nutrition & adjustments",
+        "Weekly check-ins and plan refinement",
       ],
     },
   ];
@@ -239,13 +225,14 @@ export default function NutritionPlan() {
         <Stack spacing={1.2} sx={{ mb: { xs: 4, md: 6 }, textAlign: "center" }}>
           <Typography
             variant="h3"
+            color="#F5C400"
             sx={{ fontWeight: 950, letterSpacing: -0.6 }}
           >
             Choose your Nutrition Plan
           </Typography>
-          <Typography sx={{ opacity: 0.8,  mx:"auto" }}>
-            Pick the path that matches your goal. You’ll get a practical plan,
-            regular check-ins, and adjustments based on real life and training.
+          <Typography sx={{ opacity: 0.8, mx: "auto" }}>
+            Pick the nutrition path that suits your goals. All consultations are
+            held online until further notice
           </Typography>
         </Stack>
 

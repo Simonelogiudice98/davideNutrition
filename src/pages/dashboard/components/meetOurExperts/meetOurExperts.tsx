@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Button,
   Card,
   CardContent,
   Container,
@@ -10,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import CheckIcon from "@mui/icons-material/Check";
 import profilePhoto from "../../../../assets/images/expert/expert.jpg";
 
 export type MeetOurExpertProps = {
@@ -33,12 +33,7 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
   fullName,
   role,
   bioShort = "Nutritionist focused on body recomposition, habit building and long-term adherence — no extreme plans, no guesswork.",
-  bullets = [
-    "Initial assessment & lifestyle review",
-    "Flexible, personalised meal plan",
-    "Quick recipes + ready-to-use grocery list",
-    "Follow-ups, adjustments and ongoing support",
-  ],
+  onPrimary,
   className,
 }) => {
   const imageSrc = profilePhoto;
@@ -59,11 +54,9 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
           textAlign="center"
           sx={{ mb: 3 }}
         >
-
-          <Typography variant="h3" sx={{ fontWeight: 900 }}>
+          <Typography variant="h3" sx={{ fontWeight: 900, color: "#F5C400" }}>
             Meet the professional guiding your journey
           </Typography>
-
         </Stack>
 
         <Card variant="softBorder" sx={{ overflow: "hidden" }}>
@@ -71,85 +64,70 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
             <Grid size={{ xs: 12, md: 7 }}>
               <CardContent sx={{ p: { xs: 2.25, sm: 3.25 } }}>
                 <Stack spacing={2.25}>
+                  {/* Nome e ruolo */}
                   <Stack direction="row" spacing={1.5} alignItems="center">
-
                     <Box sx={{ minWidth: 0 }}>
-                      <Stack
-                        direction={{ xs: "column", sm: "row" }}
-                        spacing={{ xs: 0.5, sm: 1 }}
-                        alignItems={{ sm: "center" }}
-                        flexWrap="wrap"
+                      <Typography
+                        sx={{
+                          fontWeight: 900,
+                          fontSize: { xs: 18, sm: 22 },
+                          lineHeight: 1.1,
+                          color: "#F5C400",
+                        }}
                       >
-                        <Typography
-                          sx={{
-                            fontWeight: 900,
-                            fontSize: { xs: 18, sm: 22 },
-                            lineHeight: 1.1,
-                          }}
-                        >
-                          {fullName}
-                        </Typography>
-
-                      </Stack>
-
+                        {fullName}
+                      </Typography>
                       <Typography variant="body2" color="text.secondary">
                         {role}
                       </Typography>
                     </Box>
                   </Stack>
 
-                  {(bioShort) && (
-                    <Stack spacing={1.25}>
-                      {bioShort && (
-                        <Typography
-                          color="text.secondary"
-                          sx={{ maxWidth: 680 }}
-                        >
-                          {bioShort}
-                        </Typography>
-                      )}
-                    </Stack>
+                  {/* Bio */}
+                  {bioShort && (
+                    <Typography color="text.secondary" sx={{ maxWidth: 680 }}>
+                      {bioShort}
+                    </Typography>
                   )}
 
                   <Divider sx={{ borderColor: "divider" }} />
 
-                  <Grid container spacing={1.25}>
-                    {bullets.map((b, i) => (
-                      <Grid key={i} size={{ xs: 12, sm: 6 }}>
-                        <Stack
-                          direction="row"
-                          spacing={1}
-                          alignItems="flex-start"
-                        >
-                          <Box
-                            sx={{
-                              width: 22,
-                              height: 22,
-                              borderRadius: 999,
-                              display: "grid",
-                              placeItems: "center",
-                              border: "1px solid",
-                              borderColor: "divider",
-                              bgcolor: "rgba(245,196,0,.06)",
-                              flex: "0 0 auto",
-                              mt: "2px",
-                            }}
-                          >
-                            <CheckIcon
-                              sx={{ fontSize: 16, color: "primary.main" }}
-                            />
-                          </Box>
+                  <Typography color="text.secondary" sx={{ maxWidth: 680 }}>
+                    The next step is simple!{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: "#F5C400", fontWeight: 700 }}
+                    >
+                      Schedule a FREE INTRODUCTORY CALL
+                    </Box>{" "}
+                    by clicking on the "Book Now" button below and map out your
+                    nutrition plan.
+                  </Typography>
 
-                          <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
-                            {b}
-                          </Typography>
-                        </Stack>
-                      </Grid>
-                    ))}
-                  </Grid>
+                  <Button
+                    variant="contained"
+                    onClick={onPrimary}
+                    sx={{
+                      bgcolor: "#F5C400",
+                      color: "#000",
+                      fontWeight: 800,
+                      px: 4,
+                      py: 1.2,
+                      borderRadius: 2,
+                      width: "fit-content",
+                      textTransform: "none",
+                      fontSize: 15,
+                      "&:hover": {
+                        bgcolor: "#d4a900",
+                      },
+                    }}
+                  >
+                    Book Now
+                  </Button>
                 </Stack>
               </CardContent>
             </Grid>
+
             <Grid size={{ xs: 12, md: 5 }} order={{ xs: 0, md: 1 }}>
               <Box
                 sx={{
@@ -171,12 +149,11 @@ const MeetOurExpert: React.FC<MeetOurExpertProps> = ({
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    objectPosition: { xs: "center 20%", md: "center" }, 
+                    objectPosition: { xs: "center 20%", md: "center" },
                     transform: { xs: "none", md: "scale(1.02)" },
                     backgroundColor: "background.default",
                   }}
                 />
-
               </Box>
             </Grid>
           </Grid>

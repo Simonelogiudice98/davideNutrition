@@ -35,15 +35,15 @@ type Feature = {
 const FEATURES: Feature[] = [
   {
     id: "what",
-    title: "What you get",
-    subtitle: "Personalised plan, practical guidance, recipes and follow-ups",
+    title: "Choose your plan",
+    subtitle: "Pick a plan that matches your goal",
     Icon: RestaurantMenuIcon,
     targetId: "plans",
   },
   {
     id: "expert",
-    title: "Meet your expert",
-    subtitle: "Initial assessment and tailored goals",
+    title: "Meet your Expert",
+    subtitle: "Meet Davide UK Registered Nutritionist",
     Icon: PersonSearchIcon,
     targetId: "meet-expert",
   },
@@ -56,8 +56,8 @@ const FEATURES: Feature[] = [
   },
   {
     id: "faq",
-    title: "FAQ",
-    subtitle: "Common questions about plans, visits and timelines",
+    title: "Frequently Asked Questions",
+    subtitle: "Frequently Asked Questions",
     Icon: HelpOutlineIcon,
     targetId: "faq",
   },
@@ -95,6 +95,7 @@ const Home: React.FC = () => {
                   sx={{
                     fontWeight: "bold",
                     fontFamily: "'montserrat', sans-serif",
+                    color: "#F5C400",
                   }}
                 >
                   Davide Nutrition
@@ -102,10 +103,10 @@ const Home: React.FC = () => {
 
                 <Typography
                   color="text.secondary"
-                  sx={{ maxWidth: 650, fontWeight: "bold" }}
+                  sx={{ maxWidth: 650, fontWeight: "bold", color: "#F5C400" }}
                 >
-                  practical nutrition support for athletes, gym-goers, and
-                  active individuals
+                  practical nutrition for athletes, gym-goers , active
+                  individuals, and complete beginners
                 </Typography>
 
                 <Typography
@@ -113,9 +114,10 @@ const Home: React.FC = () => {
                   color="text.secondary"
                   sx={{ fontWeight: "italic" }}
                 >
-                  specialised in supporting combat athletes through weight cuts,
-                  weigh-ins, and fight camp — so you make weight without
-                  sacrificing performance
+                  If you want to change your body, build better habits, and feel
+                  confident with food, you’re in the right place. Whether you’re
+                  just getting started or training hard already, we’ll build a
+                  plan that fits your life and gets results.
                 </Typography>
               </Stack>
             </Grid>
@@ -220,8 +222,8 @@ const Home: React.FC = () => {
                               display: "grid",
                               placeItems: "center",
                               borderRadius: 3,
-                              border: "1px solid",
-                              borderColor: "divider",
+                              border: "2px solid",
+                              borderColor: "#F5C400",
                               bgcolor: "rgba(245,196,0,.06)",
                             }}
                           >
@@ -230,8 +232,8 @@ const Home: React.FC = () => {
                             />
                           </Box>
 
-                          <Typography
-                            sx={{ fontWeight: 900, color: "primary.main" }}
+                          <Typography color="#F5C400" 
+                            sx={{ fontWeight: 900, }}
                           >
                             {title}
                           </Typography>
@@ -253,27 +255,33 @@ const Home: React.FC = () => {
       <Box id="meet-expert" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
         <MeetOurExperts
           fullName="Davide Maltagliati"
-          role="Registered Nutritionist"
-          bioShort="Registered nutritionist specialising in nutrition education and body recomposition."
+          role="UK Registered Nutritionist"
+          bioShort="Davide is a Registered Associate Nutritionist (ANutr) and Human Nutrition graduate, experienced in weight management and sports nutrition. He supports athletes, gym-goers, active individuals, and complete beginners using practical nutrition strategies that fit real life and drive real results.
+          He also specialises in combat sports nutrition, helping fighters fuel training, manage weight safely, and perform at their best throughout camp and competition.
+          Davide has worked with
+          European and Intercontinental
+          Muay Thai and kickboxing
+          champions, bringing elite-level
+          experience into a tailored plan
+          built around your goals."
           photoUrl="/images/davide.jpg"
           ctaPrimaryText="Book a consultation"
           ctaSecondaryText="Message me on WhatsApp"
           onPrimary={() => console.log("book")}
-          onSecondary={() => console.log("whatsapp")}
         />
       </Box>
 
-      <Box id="testimonials" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
-        <TestimonialsSection />
-      </Box>
       <Box id="plans" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
         <NutritionPlan />
+      </Box>
+      <Box id="testimonials" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
+        <TestimonialsSection />
       </Box>
 
       <Box id="faq" sx={{ mt: { xs: 2, md: 3 }, scrollMarginTop: 96 }}>
         <FaqSection />
       </Box>
-      
+
       <Box sx={{ mt: { xs: 2, md: 3 } }}>
         <SeminarEnquirySection
           id="seminar"

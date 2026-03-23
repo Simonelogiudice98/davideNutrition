@@ -224,7 +224,7 @@ export default function TestimonialsSection({
     <Box component="section" id="testimonials" sx={{ py: { xs: 4, md: 6 } }}>
       <Container maxWidth={false} sx={{ width: "min(1100px, 96%)", mx: "auto" }}>
         <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 3 }}>
-          <Typography variant="h3" sx={{ fontWeight: 900 }}>
+          <Typography variant="h3" color="#F5C400"  sx={{ fontWeight: 900 }}>
             Real stories. Real results.
           </Typography>
           <Typography color="text.secondary" sx={{ maxWidth: 760 }}>
